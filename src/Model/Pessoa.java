@@ -10,6 +10,8 @@ public class Pessoa extends Login{
 	private int telefone;
 	private String email;
 	private String endereco;
+	private String sexo;
+	private int cpf;
 	
 	public Pessoa() {
 		
@@ -28,6 +30,29 @@ public class Pessoa extends Login{
 		super.setLogin(login);
 		super.setSenha(senha);
 		super.setId(id);
+	}
+	
+	
+	
+
+
+	public int getCpf() {
+		return cpf;
+	}
+
+
+	public void setCpf(int cpf) {
+		this.cpf = cpf;
+	}
+
+
+	public String getSexo() {
+		return sexo;
+	}
+
+
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
 	}
 
 

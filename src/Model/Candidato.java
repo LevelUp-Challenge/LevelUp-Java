@@ -6,6 +6,10 @@ import java.time.Period;
 public class Candidato extends Pessoa {
 	private String status;
 	private int idCandidato;
+	private String dadosPerfilCandidato;
+	private String InteressesCandidato;
+	private String biografia;
+	private String email;
 	
 	public Candidato() {
 		
@@ -26,6 +30,48 @@ public class Candidato extends Pessoa {
 		
 		this.status = status;
 		this.idCandidato = idCandidato;
+	}
+	
+	
+	
+
+	public String getEmail() {
+		return email;
+	}
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
+	public String getDadosPerfilCandidato() {
+		return dadosPerfilCandidato;
+	}
+
+
+	public void setDadosPerfilCandidato(String dadosPerfilCandidato) {
+		this.dadosPerfilCandidato = dadosPerfilCandidato;
+	}
+
+
+	public String getInteressesCandidato() {
+		return InteressesCandidato;
+	}
+
+
+	public void setInteressesCandidato(String interessesCandidato) {
+		InteressesCandidato = interessesCandidato;
+	}
+
+
+	public String getBiografia() {
+		return biografia;
+	}
+
+
+	public void setBiografia(String biografia) {
+		this.biografia = biografia;
 	}
 
 
