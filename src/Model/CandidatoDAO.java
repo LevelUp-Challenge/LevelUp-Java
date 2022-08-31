@@ -58,7 +58,7 @@ public class CandidatoDAO {
 	public String alterar(Object obj) {
 		candidato = (Candidato) obj;
 
-		String sql = "update filmes set nm_candidato = ?,sx_candidato = ?,dt_nascimento = ?,"
+		String sql = "update candidato set nm_candidato = ?,sx_candidato = ?,dt_nascimento = ?,"
 				+ "ds_email = ?, nr_telefone = ?, ds_cpf = ?, ds_login = ?, ds_senha = ?,"
 				+ " ds_ativo = ?, ds_perfil_candidato = ?, ds_biografia, ds_interesses = ?";
 		sql += "where id_candidato = ?";

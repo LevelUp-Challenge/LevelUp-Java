@@ -5,8 +5,8 @@ import java.time.Period;
 
 public class Recrutador extends Pessoa {
 	private int idRecrutador;
-	// Declarar lista;
 	private String status;
+	private String areas_recrutamento;
 	
 	public Recrutador() {
 		
@@ -14,20 +14,27 @@ public class Recrutador extends Pessoa {
 	
 	
 	
-	public Recrutador(String nome, String idade, LocalDate dataNasc, int telefone, String email, String endereco, String login, String senha, int id, int idRecrutador, String status) {
-		
+	public Recrutador(String areas_recrutamento, String nome, String login, String senha, int idRecrutador, String status) {
 		super.setNome(nome);
-		super.setIdade(idade);
-		super.setEmail(email);
-		super.setDataNasc(dataNasc);
-		super.setEndereco(endereco);
 		super.setLogin(login);
 		super.setSenha(senha);
-		super.setTelefone(telefone);
 		super.setId(idRecrutador);
 		
 		this.idRecrutador = idRecrutador;
 		this.status = status;
+		this.areas_recrutamento = areas_recrutamento;
+	}
+
+
+
+	public String getAreas_recrutamento() {
+		return areas_recrutamento;
+	}
+
+
+
+	public void setAreas_recrutamento(String areas_recrutamento) {
+		this.areas_recrutamento = areas_recrutamento;
 	}
 
 
