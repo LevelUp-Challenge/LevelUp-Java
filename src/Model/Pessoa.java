@@ -9,7 +9,6 @@ public class Pessoa extends Login{
 	private LocalDate dataNasc;
 	private int telefone;
 	private String email;
-	private String endereco;
 	private String sexo;
 	private int cpf;
 	
@@ -25,7 +24,6 @@ public class Pessoa extends Login{
 		this.dataNasc = dataNasc;
 		this.telefone = telefone;
 		this.email = email;
-		this.endereco = endereco;
 		
 		super.setLogin(login);
 		super.setSenha(senha);
@@ -85,12 +83,6 @@ public class Pessoa extends Login{
 	}
 	public void setEmail(String email) {
 		this.email = email;
-	}
-	public String getEndereco() {
-		return endereco;
-	}
-	public void setEndereco(String endereco) {
-		this.endereco = endereco;
 	}
 	
 	public int calculaId() {

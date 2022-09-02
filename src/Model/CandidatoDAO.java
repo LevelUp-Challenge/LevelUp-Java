@@ -5,11 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-
-
-
-
-public class CandidatoDAO {
+public class CandidatoDAO implements IDAO {
 	private Connection con;
 	private Candidato candidato;
 	
@@ -27,7 +23,7 @@ public class CandidatoDAO {
 	
 	public String inserir(Object obj) {
 		candidato = (Candidato) obj;
-		String sql = "insert into candidato(id_candidato,nm_candidato,sx_candidato,dt_nascimento"
+		String sql = "insert into t_lup_candidato(id_candidato,nm_candidato,sx_candidato,dt_nascimento"
 				+ "ds_email, nr_telefone, ds_cpf, ds_login, ds_senha, ds_ativo, ds_perfil_candidato"
 				+ "ds_biografia, ds_interesses) values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		try {

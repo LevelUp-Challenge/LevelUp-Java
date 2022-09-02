@@ -22,7 +22,6 @@ public class Candidato extends Pessoa {
 		super.setIdade(idade);
 		super.setEmail(email);
 		super.setDataNasc(dataNasc);
-		super.setEndereco(endereco);
 		super.setLogin(login);
 		super.setSenha(senha);
 		super.setTelefone(telefone);
