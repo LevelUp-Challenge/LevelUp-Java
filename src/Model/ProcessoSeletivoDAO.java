@@ -20,9 +20,10 @@ public class ProcessoSeletivoDAO implements IDAO {
 
 	public String inserir(Object obj) {
 		pcsl = (ProcessoSeletivo) obj;
-		String sql = "insert into T_LUP_PROCESSO_SELETIVO (ds_nome_vaga, ds_descricao_vaga, ds_salario, ds_beneficios_vaga"
-				+ "ds_modalidade_vaga, pcd_aplicavel, ts_desafio, qt_inscritos)"
-				+ "values (?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "insert into T_LUP_PROCESSO_SELETIVO (ds_nome_vaga, ds_descricao_vaga, ds_area_vaga, ds_salario, "
+				+ "ds_beneficios_vaga"
+				+ "ds_modalidade_vaga, pcd_aplicavel, ts_desafio, qt_inscritos, md_sexo_inscritos)"
+				+ "values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		try {
 			PreparedStatement ps = getCon().prepareStatement(sql);
 			ps.setString(1, pcsl.getNomeVaga());
@@ -33,6 +34,7 @@ public class ProcessoSeletivoDAO implements IDAO {
 			ps.setString(6, pcsl.getPcdAplicavel());
 			ps.setString(7, pcsl.getDesafio());
 			ps.setInt(8, pcsl.getInscritos());
+			ps.setString(9, pcsl.getMediaInscritos());
 			if (ps.executeUpdate() > 0) {
 				return "Processo seletivo inserido com sucesso!";
 			} else {
@@ -46,8 +48,8 @@ public class ProcessoSeletivoDAO implements IDAO {
 	public String alterar(Object obj) {
 		pcsl = (ProcessoSeletivo) obj;
 		String sql = "update T_LUP_PROCESSO_SELETIVO set ds_descricao_vaga = ?, ds_salario = ?, ds_beneficios_vaga = ?,"
-				+ "ds_modalidade_vaga = ?, pcd_aplicavel = ?, ts_desafio = ?, qt_inscritos = ?"
-				+ "where ds_nome_vaga = ?";
+				+ "ds_modalidade_vaga = ?, pcd_aplicavel = ?, ts_desafio = ?, qt_inscritos = ?, md_sexo_inscritos"
+				+ "where id_vaga = ?";
 		try {
 			PreparedStatement ps = getCon().prepareStatement(sql);
 			ps.setString(1, pcsl.getDescricaoVaga());
@@ -58,6 +60,8 @@ public class ProcessoSeletivoDAO implements IDAO {
 			ps.setString(6, pcsl.getDesafio());
 			ps.setInt(7, pcsl.getInscritos());
 			ps.setString(8, pcsl.getNomeVaga());
+			ps.setString(9, pcsl.getMediaInscritos());
+
 			if (ps.executeUpdate() > 0) {
 				return "Processo seletivo alterado com sucesso!";
 			} else {
@@ -70,7 +74,7 @@ public class ProcessoSeletivoDAO implements IDAO {
 
 	public String excluir(Object obj) {
 		pcsl = (ProcessoSeletivo) obj;
-		String sql = "delete from T_LUP_PROCESSO_SELETIVO where ds_nome_vaga = ?";
+		String sql = "delete from T_LUP_PROCESSO_SELETIVO where id_vaga = ?";
 		try {
 			PreparedStatement ps = getCon().prepareStatement(sql);
 			ps.setString(1, pcsl.getNomeVaga());
@@ -100,6 +104,7 @@ public class ProcessoSeletivoDAO implements IDAO {
 					lista += "PCD Aplicável: " + rs.getString(6) + ".\n";
 					lista += "Desafio: "  + rs.getString(7) + ".\n";
 					lista += "Quantidade de inscritos: "  + rs.getString(8) + ".\n";
+					lista += "Media sexo inscritos: "  + rs.getString(9) + ".\n";
 					lista += "-------------\n";
 				}
 				return lista;

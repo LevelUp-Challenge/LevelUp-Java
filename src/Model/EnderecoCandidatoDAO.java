@@ -24,15 +24,15 @@ public class EnderecoCandidatoDAO {
 
 	public String inserir(Object obj) {
 		ecdao = (EnderecoCandidato) obj;
-		String sql = "insert into t_lup_endereco" + "(id_candidato, ds_bairro, ds_logradouro, ds_cidade, ds_cep"
+		String sql = "insert into t_lup_endereco" + "(id_endereco, ds_bairro, ds_logradouro, ds_cidade, ds_cep"
 				+ "ds_ponto_ref, nm_estado, sg_estado, nr_logradouro, "
 				+ "ds_complemento_numero) values(?,?,?,?,?,?,?,?,?,?)";
 		try {
 			PreparedStatement ps = getCon().prepareStatement(sql);
-			ps.setInt(1, ecdao.getIdCandidato());
+			ps.setInt(1, ecdao.getIdEnderecoCandidato());
 			ps.setString(2, ecdao.getDsBairro());
 			ps.setString(3, ecdao.getDsLogradouro());
-			ps.setString(4, ecdao.getCidade());
+			ps.setString(4, ecdao.getDsCidade());
 			ps.setString(5, ecdao.getCep());
 			ps.setString(6, ecdao.getPontoRef());
 			ps.setString(7, ecdao.getEstado());
@@ -53,19 +53,19 @@ public class EnderecoCandidatoDAO {
 		ecdao = (EnderecoCandidato) obj;
 		String sql = "update t_lup_endereco set" + " ds_bairro = ?, ds_logradouro = ?, ds_cidade = ?, ds_cep = ?"
 				+ "ds_ponto_ref = ?, nm_estado = ?, sg_estado = ?, nr_logradouro = ?, " + "ds_complemento_numero = ? ";
-		sql += "where id_candidato = ?";
+		sql += "where id_endereco = ?";
 		try {
 			PreparedStatement ps = getCon().prepareStatement(sql);
 			ps.setString(1, ecdao.getDsBairro());
 			ps.setString(2, ecdao.getDsLogradouro());
-			ps.setString(3, ecdao.getCidade());
+			ps.setString(3, ecdao.getDsCidade());
 			ps.setString(4, ecdao.getCep());
 			ps.setString(5, ecdao.getPontoRef());
 			ps.setString(6, ecdao.getEstado());
 			ps.setString(7, ecdao.getSgEstado());
 			ps.setInt(8, ecdao.getNrLogradouro());
 			ps.setString(9, ecdao.getComplemento());
-			ps.setInt(10, ecdao.getIdCandidato());
+			ps.setInt(1, ecdao.getIdEnderecoCandidato());
 			if (ps.executeUpdate() > 0) {
 				return "Alterado com sucesso!";
 			} else {
@@ -78,10 +78,10 @@ public class EnderecoCandidatoDAO {
 
 	public String excluir(Object obj) {
 		ecdao = (EnderecoCandidato) obj;
-		String sql = "delete from t_lup_endereco where id_candidato";
+		String sql = "delete from t_lup_endereco where id_endereco";
 		try {
 			PreparedStatement ps = getCon().prepareStatement(sql);
-			ps.setInt(1, ecdao.getIdCandidato());
+			ps.setInt(1, ecdao.getIdEnderecoCandidato());
 
 			if (ps.executeUpdate() > 0) {
 				return "Deletado com sucesso!";

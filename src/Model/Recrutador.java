@@ -4,9 +4,8 @@ import java.time.LocalDate;
 import java.time.Period;
 
 public class Recrutador extends Pessoa {
-	private int idRecrutador;
-	private String status;
-	private String areas_recrutamento;
+	private int idRecrutador; 
+	private String areas_recrutamento; 
 	
 	public Recrutador() {
 		
@@ -19,9 +18,9 @@ public class Recrutador extends Pessoa {
 		super.setLogin(login);
 		super.setSenha(senha);
 		super.setId(idRecrutador);
+		super.getStatus();
 		
 		this.idRecrutador = idRecrutador;
-		this.status = status;
 		this.areas_recrutamento = areas_recrutamento;
 	}
 
@@ -45,23 +44,14 @@ public class Recrutador extends Pessoa {
 	public void setIdRecrutador(int idRecrutador) {
 		this.idRecrutador = idRecrutador;
 	}
-	public String getStatus() {
-		return status;
-	}
-	public void setStatus(String status) {
-		this.status = status;
-	}
+	
 	
 	public int calculaId() {
 		int userId = super.getId() + 1;
 		return userId;
 	
 	}
-	public Period calculaIdade(LocalDate dataA) {
-		Period idade = Period.between(super.getDataNasc(), dataA);
-		return idade;
-		
-	}
+	
 	
 	
 	

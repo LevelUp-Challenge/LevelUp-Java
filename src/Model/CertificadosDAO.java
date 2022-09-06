@@ -19,7 +19,7 @@ public class CertificadosDAO implements IDAO {
 
 	public String inserir(Object obj) {
 		c = (Certificados) obj;
-		String sql = "insert into T_LUP_CERTIFICADOS (ds_descricao, nm_curso)"
+		String sql = "insert into T_LUP_CERTIFICADOS (ds_certificados, ds_cursos)"
 				+ "values (?,?)";
 		try {
 			PreparedStatement ps = getCon().prepareStatement(sql);

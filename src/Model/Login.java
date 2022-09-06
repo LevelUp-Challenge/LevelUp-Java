@@ -26,11 +26,7 @@ public class Login {
 		this.senha = senha;
 	}
 	
-	public int calculaId() {
-		int userId = id + 1;
-		return userId;
-	
-	}
+
 	
 
 }

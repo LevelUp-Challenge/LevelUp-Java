@@ -4,8 +4,8 @@ import java.time.LocalDate;
 import java.time.Period;
 
 public class Candidato extends Pessoa {
-	private String status;
-	private int idCandidato;
+
+	private int idCandidato; //retirar
 	private String dadosPerfilCandidato;
 	private String InteressesCandidato;
 	private String biografia;
@@ -16,7 +16,10 @@ public class Candidato extends Pessoa {
 	}
 	
 	
-	public Candidato(String nome, String idade, LocalDate dataNasc, int telefone, String email, String endereco, String login, String senha, int id, String status, int idCandidato) {
+	public Candidato(String nome, String idade, 
+			LocalDate dataNasc, int telefone, String email, 
+			String endereco, String login, String senha, int id, 
+			String status, int idCandidato) {
 		
 		super.setNome(nome);
 		super.setIdade(idade);
@@ -26,8 +29,9 @@ public class Candidato extends Pessoa {
 		super.setSenha(senha);
 		super.setTelefone(telefone);
 		super.setId(idCandidato);
+		super.setStatus(status);
 		
-		this.status = status;
+		
 		this.idCandidato = idCandidato;
 	}
 	
@@ -74,12 +78,7 @@ public class Candidato extends Pessoa {
 	}
 
 
-	public String getStatus() {
-		return status;
-	}
-	public void setStatus(String status) {
-		this.status = status;
-	}
+	
 	public int getIdCandidato() {
 		return idCandidato;
 	}

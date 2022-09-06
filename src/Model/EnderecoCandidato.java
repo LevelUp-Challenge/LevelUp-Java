@@ -1,11 +1,10 @@
 package Model;
 
 public class EnderecoCandidato {
-	private int idCandidato;
+	private int idEnderecoCandidato;
 	private String dsBairro;
 	private String dsLogradouro;
 	private String dsCidade;
-	private String cidade;
 	private String cep;
 	private String pontoRef;
 	private String estado;
@@ -20,11 +19,12 @@ public class EnderecoCandidato {
 	public void setDsLogradouro(String dsLogradouro) {
 		this.dsLogradouro = dsLogradouro;
 	}
-	public int getIdCandidato() {
-		return idCandidato;
+	
+	public int getIdEnderecoCandidato() {
+		return idEnderecoCandidato;
 	}
-	public void setIdCandidato(int idCandidato) {
-		this.idCandidato = idCandidato;
+	public void setIdEnderecoCandidato(int idEnderecoCandidato) {
+		this.idEnderecoCandidato = idEnderecoCandidato;
 	}
 	public String getEstado() {
 		return estado;
@@ -44,12 +44,7 @@ public class EnderecoCandidato {
 	public void setDsCidade(String dsCidade) {
 		this.dsCidade = dsCidade;
 	}
-	public String getCidade() {
-		return cidade;
-	}
-	public void setCidade(String cidade) {
-		this.cidade = cidade;
-	}
+	
 	public String getCep() {
 		return cep;
 	}

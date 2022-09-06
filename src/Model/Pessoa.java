@@ -1,4 +1,4 @@
-package Model;
+ package Model;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -11,20 +11,24 @@ public class Pessoa extends Login{
 	private String email;
 	private String sexo;
 	private int cpf;
+	private String status;
 	
 	public Pessoa() {
 		
 	}
 	
 	
-	public Pessoa(String nome, String idade, LocalDate dataNasc, int telefone, String email, String endereco, String login, String senha, int id) {
+	public Pessoa(String nome, 
+			String idade, LocalDate dataNasc, int telefone,
+			String email, String endereco, String login,
+			String senha, int id, String status) {
 		
 		this.nome = nome;
 		this.idade = idade;
 		this.dataNasc = dataNasc;
 		this.telefone = telefone;
 		this.email = email;
-		
+		this.status = status;
 		super.setLogin(login);
 		super.setSenha(senha);
 		super.setId(id);
@@ -32,6 +36,16 @@ public class Pessoa extends Login{
 	
 	
 	
+
+
+	public String getStatus() {
+		return status;
+	}
+
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
 
 	public int getCpf() {
@@ -90,10 +104,5 @@ public class Pessoa extends Login{
 		return userId;
 	
 	}
-	public Period calculaIdade() {
-		LocalDate dataA = LocalDate.now();
-		Period idade = Period.between(dataNasc, dataA);
-		return idade;
-		
-	}
+
 }

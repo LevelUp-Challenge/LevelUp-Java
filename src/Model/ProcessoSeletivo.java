@@ -2,10 +2,21 @@ package Model;
 
 public class ProcessoSeletivo {
 	
-	private String nomeVaga, descricaoVaga, areaVaga, beneficiosVaga, modalidadeVaga, pcdAplicavel, desafio;
+	private String nomeVaga, 
+	descricaoVaga, areaVaga, beneficiosVaga, 
+	modalidadeVaga, pcdAplicavel, 
+	desafio, mediaInscritos;
 	private int inscritos;
 	private double salario;
 	
+	
+	
+	public String getMediaInscritos() {
+		return mediaInscritos;
+	}
+	public void setMediaInscritos(String mediaInscritos) {
+		this.mediaInscritos = mediaInscritos;
+	}
 	public String getNomeVaga() {
 		return nomeVaga;
 	}

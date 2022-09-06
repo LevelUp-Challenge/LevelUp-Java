@@ -1,7 +1,7 @@
 package Model;
 
 public class ContatoRecrutador {
-	private int idRecrutador;
+	private int idContatoRecrutador; // retirar
 	private String email;
 	private int telefone;
 	private int ddd;
@@ -11,10 +11,10 @@ public class ContatoRecrutador {
 	
 
 	public int getIdRecrutador() {
-		return idRecrutador;
+		return idContatoRecrutador;
 	}
 	public void setIdRecrutador(int idRecrutador) {
-		this.idRecrutador = idRecrutador;
+		this.idContatoRecrutador = idRecrutador;
 	}
 	
 	public String getEmail() {

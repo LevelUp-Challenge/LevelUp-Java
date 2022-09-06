@@ -19,7 +19,7 @@ public class DesafioCandidatoDAO implements IDAO {
 
 	public String inserir(Object obj) {
 		dc = (DesafioCandidato) obj;
-		String sql = "insert into T_LUP_DESAFIO_CANDIDATO (ds_aprovacao, ds_pontuacao, ds_tempo_aplicacao)"
+		String sql = "insert into T_LUP_DESAFIO_CANDIDATO (st_aprovacao, ds_pontuacao, ds_tempo_aplicacao)"
 				+ "values (?, ?, ?)";
 		try {
 			PreparedStatement ps = getCon().prepareStatement(sql);
@@ -38,8 +38,8 @@ public class DesafioCandidatoDAO implements IDAO {
 
 	public String alterar(Object obj) {
 		dc = (DesafioCandidato) obj;
-		String sql = "update T_LUP_DESAFIO_CANDIDATO set ds_aprovacao = ?, ds_tempo_aplicacao = ? "
-				+ "where ds_pontuacao = ?";
+		String sql = "update T_LUP_DESAFIO_CANDIDATO set st_aprovacao = ?, ds_tempo_aplicacao = ? "
+				+ "where id_teste_vaga = ?";
 		try {
 			PreparedStatement ps = getCon().prepareStatement(sql);
 			ps.setString(1, dc.getStatus());
@@ -57,7 +57,7 @@ public class DesafioCandidatoDAO implements IDAO {
 
 	public String excluir(Object obj) {
 		dc = (DesafioCandidato) obj;
-		String sql = "delete from T_LUP_DESAFIO_CANDIDATO where ds_pontuacao = ?";
+		String sql = "delete from T_LUP_DESAFIO_CANDIDATO where id_teste_vaga  = ?";
 		try {
 			PreparedStatement ps = getCon().prepareStatement(sql);
 			ps.setInt(1, dc.getPontuacao());

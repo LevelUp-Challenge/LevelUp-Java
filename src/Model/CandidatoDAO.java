@@ -24,8 +24,8 @@ public class CandidatoDAO implements IDAO {
 	public String inserir(Object obj) {
 		candidato = (Candidato) obj;
 		String sql = "insert into t_lup_candidato(id_candidato,nm_candidato,sx_candidato,dt_nascimento"
-				+ "ds_email, nr_telefone, ds_cpf, ds_login, ds_senha, ds_ativo, ds_perfil_candidato"
-				+ "ds_biografia, ds_interesses) values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+				+ "ds_email, nr_telefone, ds_cpf, ds_login, ds_senha, st_login, ds_perfil_candidato"
+				+ "ds_biografia, ds_intereses) values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		try {
 			PreparedStatement ps = getCon().prepareStatement(sql);
 			ps.setInt(1, candidato.getId() );
@@ -56,7 +56,7 @@ public class CandidatoDAO implements IDAO {
 
 		String sql = "update candidato set nm_candidato = ?,sx_candidato = ?,dt_nascimento = ?,"
 				+ "ds_email = ?, nr_telefone = ?, ds_cpf = ?, ds_login = ?, ds_senha = ?,"
-				+ " ds_ativo = ?, ds_perfil_candidato = ?, ds_biografia, ds_interesses = ?";
+				+ "  st_login = ?, ds_perfil_candidato = ?, ds_biografia, ds_interesses = ?";
 		sql += "where id_candidato = ?";
 		try {
 			PreparedStatement ps = getCon().prepareStatement(sql);
