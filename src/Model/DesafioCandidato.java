@@ -2,11 +2,17 @@ package Model;
 
 public class DesafioCandidato {
 	private int idDesafioCandidato;
-	private String status, tempoAplicacao;
+	private String status, tempoAplicacao, aprovacao;
 	private int pontuacao;
 	
 	
 	
+	public String getAprovacao() {
+		return aprovacao;
+	}
+	public void setAprovacao(String aprovacao) {
+		this.aprovacao = aprovacao;
+	}
 	public int getIdDesafioCandidato() {
 		return idDesafioCandidato;
 	}

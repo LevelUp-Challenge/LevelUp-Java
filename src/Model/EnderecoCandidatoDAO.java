@@ -33,7 +33,7 @@ public class EnderecoCandidatoDAO {
 			ps.setString(2, ecdao.getDsBairro());
 			ps.setString(3, ecdao.getDsLogradouro());
 			ps.setString(4, ecdao.getDsCidade());
-			ps.setString(5, ecdao.getCep());
+			ps.setInt(5, ecdao.getCep());
 			ps.setString(6, ecdao.getPontoRef());
 			ps.setString(7, ecdao.getEstado());
 			ps.setString(8, ecdao.getSgEstado());
@@ -59,13 +59,13 @@ public class EnderecoCandidatoDAO {
 			ps.setString(1, ecdao.getDsBairro());
 			ps.setString(2, ecdao.getDsLogradouro());
 			ps.setString(3, ecdao.getDsCidade());
-			ps.setString(4, ecdao.getCep());
+			ps.setInt(4, ecdao.getCep());
 			ps.setString(5, ecdao.getPontoRef());
 			ps.setString(6, ecdao.getEstado());
 			ps.setString(7, ecdao.getSgEstado());
 			ps.setInt(8, ecdao.getNrLogradouro());
 			ps.setString(9, ecdao.getComplemento());
-			ps.setInt(1, ecdao.getIdEnderecoCandidato());
+			ps.setInt(10, ecdao.getIdEnderecoCandidato());
 			if (ps.executeUpdate() > 0) {
 				return "Alterado com sucesso!";
 			} else {

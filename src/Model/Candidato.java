@@ -1,11 +1,9 @@
 package Model;
 
-import java.time.LocalDate;
-import java.time.Period;
 
 public class Candidato extends Pessoa {
 
-	private int idCandidato; //retirar
+	private int idCandidato; 
 	private String dadosPerfilCandidato;
 	private String InteressesCandidato;
 	private String biografia;
@@ -17,7 +15,7 @@ public class Candidato extends Pessoa {
 	
 	
 	public Candidato(String nome, String idade, 
-			LocalDate dataNasc, int telefone, String email, 
+			String dataNasc, String telefone, String email, 
 			String endereco, String login, String senha, int id, 
 			String status, int idCandidato) {
 		
@@ -91,11 +89,7 @@ public class Candidato extends Pessoa {
 		return userId;
 	
 	}
-	public Period calculaIdade(LocalDate dataA) {
-		Period idade = Period.between(super.getDataNasc(), dataA);
-		return idade;
-		
-	}
+
 	
 	
 	

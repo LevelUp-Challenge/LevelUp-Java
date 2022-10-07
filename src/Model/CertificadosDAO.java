@@ -10,6 +10,11 @@ public class CertificadosDAO implements IDAO {
 	Connection con;
 	Certificados c;
 	
+	public CertificadosDAO(Connection con) {
+		setCon(con);
+
+	}
+	
 	public Connection getCon() {
 		return con;
 	}
@@ -19,12 +24,13 @@ public class CertificadosDAO implements IDAO {
 
 	public String inserir(Object obj) {
 		c = (Certificados) obj;
-		String sql = "insert into T_LUP_CERTIFICADOS (ds_certificados, ds_cursos)"
-				+ "values (?,?)";
+		String sql = "insert into T_LUP_CERTIFICADOS (id_certificados, ds_certificados, ds_cursos)"
+				+ "values (?,?,?)";
 		try {
 			PreparedStatement ps = getCon().prepareStatement(sql);
-			ps.setString(1, c.getDescricao());
-			ps.setString(2, c.getCurso());
+			ps.setInt(1, c.getIdCertificados());
+			ps.setString(2, c.getDescricao());
+			ps.setString(3, c.getCurso());
 			if (ps.executeUpdate() > 0) {
 				return "Certificado inserido com sucesso!";
 			} else {
@@ -38,8 +44,8 @@ public class CertificadosDAO implements IDAO {
 
 	public String alterar(Object obj) {
 		c = (Certificados) obj;
-		String sql = "update T_LUP_CERTIFICADOS set ds_descricao = ?"
-				+ "where nm_curso = ?";
+		String sql = "update T_LUP_CERTIFICADOS set ds_certificados = ?, ds_cursos = ? "
+				+ "where id_certificados = ?";
 		try {
 			PreparedStatement ps = getCon().prepareStatement(sql);
 			ps.setString(1, c.getDescricao());
@@ -57,7 +63,7 @@ public class CertificadosDAO implements IDAO {
 
 	public String excluir(Object obj) {
 		c = (Certificados) obj;
-		String sql = "delete from T_LUP_CERTIFICADOS where nm_curso = ?";
+		String sql = "delete from T_LUP_CERTIFICADOS where id_certificados = ?";
 		try {
 			PreparedStatement ps = getCon().prepareStatement(sql);
 			ps.setString(1, c.getCurso());
@@ -72,7 +78,7 @@ public class CertificadosDAO implements IDAO {
 	}
 
 
-	public String listarTodos() {
+	public String listar() {
 		String sql = "select * from T_LUP_CERTIFICADOS";
 		String lista = "Lista de Certificados:\n\n";
 		try {

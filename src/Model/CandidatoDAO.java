@@ -24,23 +24,23 @@ public class CandidatoDAO implements IDAO {
 	public String inserir(Object obj) {
 		candidato = (Candidato) obj;
 		String sql = "insert into t_lup_candidato(id_candidato,nm_candidato,sx_candidato,dt_nascimento"
-				+ "ds_email, nr_telefone, ds_cpf, ds_login, ds_senha, st_login, ds_perfil_candidato"
-				+ "ds_biografia, ds_intereses) values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+				+ "ds_email,nr_telefone,ds_login,ds_cpf,st_login,ds_senha,ds_perfil_candidato"
+				+ "ds_biografia,ds_intereses) values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		try {
 			PreparedStatement ps = getCon().prepareStatement(sql);
-			ps.setInt(1, candidato.getId() );
+			ps.setInt(1, candidato.getId());
 			ps.setString(2, candidato.getNome() );
 			ps.setString(3, candidato.getSexo() );
 			ps.setString(4, candidato.getIdade());
 			ps.setString(5, candidato.getEmail());
-			ps.setInt(6, candidato.getTelefone());
-			ps.setInt(7, candidato.getCpf());
-			ps.setString(8, candidato.getLogin());
-			ps.setString(8, candidato.getSenha());
+			ps.setString(6, candidato.getTelefone());
+			ps.setString(7, candidato.getLogin());
+			ps.setString(8, candidato.getCpf());
 			ps.setString(9, candidato.getStatus());
-			ps.setString(10, candidato.getDadosPerfilCandidato());
-			ps.setString(11, candidato.getBiografia());
-			ps.setString(12, candidato.getInteressesCandidato());
+			ps.setString(10, candidato.getSenha());
+			ps.setString(11, candidato.getDadosPerfilCandidato());
+			ps.setString(12, candidato.getBiografia());
+			ps.setString(13, candidato.getInteressesCandidato());
 			
 			if (ps.executeUpdate() > 0) {
 				return "Inserido com sucesso!";
@@ -64,8 +64,8 @@ public class CandidatoDAO implements IDAO {
 			ps.setString(2, candidato.getSexo() );
 			ps.setString(3, candidato.getIdade());
 			ps.setString(4, candidato.getEmail());
-			ps.setInt(5, candidato.getTelefone());
-			ps.setInt(6, candidato.getCpf());
+			ps.setString(5, candidato.getTelefone());
+			ps.setString(6, candidato.getCpf());
 			ps.setString(7, candidato.getLogin());
 			ps.setString(8, candidato.getSenha());
 			ps.setString(9, candidato.getStatus());
@@ -115,8 +115,8 @@ public class CandidatoDAO implements IDAO {
 					listacandidato += "Sexo candidato: " + rs.getString(3) + "\n";
 					listacandidato += "Data de Nascimento: " + rs.getString(4) + "\n";
 					listacandidato += "Email: " + rs.getString(5) + "\n";
-					listacandidato += "Telefone: " + rs.getInt(6) + "\n";
-					listacandidato += "CPF: " + rs.getInt(7) + "\n";
+					listacandidato += "Telefone: " + rs.getString(6) + "\n";
+					listacandidato += "CPF: " + rs.getString(7) + "\n";
 					listacandidato += "Login: " + rs.getString(8) + "\n";
 					listacandidato += "Senha: " + rs.getString(9) + "\n";
 					listacandidato += "Status: " + rs.getString(10) + "\n";
