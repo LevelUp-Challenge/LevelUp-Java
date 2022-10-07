@@ -5,7 +5,7 @@ public class EnderecoCandidato {
 	private String dsBairro;
 	private String dsLogradouro;
 	private String dsCidade;
-	private String cep;
+	private int cep;
 	private String pontoRef;
 	private String estado;
 	private String sgEstado;
@@ -45,10 +45,11 @@ public class EnderecoCandidato {
 		this.dsCidade = dsCidade;
 	}
 	
-	public String getCep() {
+	
+	public int getCep() {
 		return cep;
 	}
-	public void setCep(String cep) {
+	public void setCep(int cep) {
 		this.cep = cep;
 	}
 	public String getPontoRef() {

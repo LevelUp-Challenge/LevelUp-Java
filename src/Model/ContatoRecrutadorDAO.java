@@ -24,7 +24,7 @@ public class ContatoRecrutadorDAO implements IDAO {
 	public String inserir(Object obj) {
 	crdao = (ContatoRecrutador) obj;
 	String sql = "insert into t_lup_contato_recrutador"
-			+ "(id_recrutador, ds_emails, ds_telefone, ds_ddd, ds_ddi) values(?,?,?,?,?)";
+			+ "(id_contato, ds_emails, ds_telefone, ds_ddd, ds_ddi) values(?,?,?,?,?)";
 			try {
 				PreparedStatement ps = getCon().prepareStatement(sql);
 				ps.setInt(1, crdao.getIdRecrutador());
@@ -46,7 +46,7 @@ public class ContatoRecrutadorDAO implements IDAO {
 		crdao = (ContatoRecrutador) obj;
 		String sql = "update t_lup_contato_recrutador "
 				+ "set ds_emails = ?, ds_telefone= ?, ds_ddd = ?, ds_ddi= ? ";
-		sql += "where id_recrutador = ?";
+		sql += "where id_contato = ?";
 		
 		try {
 			PreparedStatement ps = getCon().prepareStatement(sql);
@@ -69,7 +69,7 @@ public class ContatoRecrutadorDAO implements IDAO {
 	}
 	public String excluir(Object obj) {
 		crdao = (ContatoRecrutador) obj;
-		String sql = "delete from t_lup_contato_recrutador where id_recrutador = ?";
+		String sql = "delete from t_lup_contato_recrutador where id_contato = ?";
 
 		
 		try {

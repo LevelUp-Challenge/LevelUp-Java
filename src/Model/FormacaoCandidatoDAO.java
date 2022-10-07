@@ -11,6 +11,10 @@ public class FormacaoCandidatoDAO implements IDAO {
 	
 	
 	
+	public FormacaoCandidatoDAO(Connection con) {
+		super();
+		this.con = con;
+	}
 	public Connection getCon() {
 		return con;
 	}
@@ -20,16 +24,25 @@ public class FormacaoCandidatoDAO implements IDAO {
 	
 	public String inserir(Object obj) {
 		fc = (FormacaoCandidato) obj;
-		String sql = "insert into T_LUP_FORMACAO_CANDIDATO (nm_formacao, ds_grau_formacao, dt_conclusao, dt_inicio)"
-				+ "values (?,?,?,?)";
+		String sql = "insert into T_LUP_FORMACAO_CANDIDATO (id_formacao_candidato, tp_formacao, ds_status_formacao)"
+				+ "values (?,?,?)";
 		try {
 			PreparedStatement ps = getCon().prepareStatement(sql);
-			ps.setString(1, fc.getNomeFormacao());
-			ps.setString(2, fc.getGrauFormacao());
+			ps.setInt(1, fc.getIdFormacao());
+			ps.setString(2, fc.getTpFormacao());
+			ps.setString(3, fc.getStatus());
+			if (ps.executeUpdate() > 0) {
+				return "inserido com sucesso!";
+			} else {
+				return "Erro ao inserir!";
+			}
+			
+			
+			
 		} catch (SQLException e) {
 			return e.getMessage();
 		}
-		return null;
+
 	}
 	public String alterar(Object obj) {
 		

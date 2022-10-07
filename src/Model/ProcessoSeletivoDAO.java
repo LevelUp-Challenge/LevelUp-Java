@@ -10,6 +10,12 @@ public class ProcessoSeletivoDAO implements IDAO {
 	Connection con;
 	ProcessoSeletivo pcsl;
 	
+	
+	
+	public ProcessoSeletivoDAO(Connection con) {
+		super();
+		this.con = con;
+	}
 	public Connection getCon() {
 		return con;
 	}
@@ -20,21 +26,23 @@ public class ProcessoSeletivoDAO implements IDAO {
 
 	public String inserir(Object obj) {
 		pcsl = (ProcessoSeletivo) obj;
-		String sql = "insert into T_LUP_PROCESSO_SELETIVO (ds_nome_vaga, ds_descricao_vaga, ds_area_vaga, ds_salario, "
-				+ "ds_beneficios_vaga"
+		String sql = "insert into T_LUP_PROCESSO_SELETIVO (id_vaga, ds_nome_vaga, ds_descricao_vaga, ds_area_vaga, ds_salario, "
+				+ "ds_beneficios_vaga, "
 				+ "ds_modalidade_vaga, pcd_aplicavel, ts_desafio, qt_inscritos, md_sexo_inscritos)"
-				+ "values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				+ "values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		try {
 			PreparedStatement ps = getCon().prepareStatement(sql);
-			ps.setString(1, pcsl.getNomeVaga());
-			ps.setString(2, pcsl.getDescricaoVaga());
-			ps.setDouble(3, pcsl.getSalario());
-			ps.setString(4, pcsl.getBeneficiosVaga());
-			ps.setString(5, pcsl.getModalidadeVaga());
-			ps.setString(6, pcsl.getPcdAplicavel());
-			ps.setString(7, pcsl.getDesafio());
-			ps.setInt(8, pcsl.getInscritos());
-			ps.setString(9, pcsl.getMediaInscritos());
+			ps.setInt(1, pcsl.getId());
+			ps.setString(2, pcsl.getNomeVaga());
+			ps.setString(3, pcsl.getDescricaoVaga());
+			ps.setString(4, pcsl.getAreaVaga());
+			ps.setDouble(5, pcsl.getSalario());
+			ps.setString(6, pcsl.getBeneficiosVaga());
+			ps.setString(7, pcsl.getModalidadeVaga());
+			ps.setString(8, pcsl.getPcdAplicavel());
+			ps.setString(9, pcsl.getDesafio());
+			ps.setInt(10, pcsl.getInscritos());
+			ps.setString(11, pcsl.getMediaInscritos());
 			if (ps.executeUpdate() > 0) {
 				return "Processo seletivo inserido com sucesso!";
 			} else {

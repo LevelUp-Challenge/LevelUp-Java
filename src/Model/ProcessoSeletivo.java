@@ -6,11 +6,17 @@ public class ProcessoSeletivo {
 	descricaoVaga, areaVaga, beneficiosVaga, 
 	modalidadeVaga, pcdAplicavel, 
 	desafio, mediaInscritos;
-	private int inscritos;
+	private int inscritos, id;
 	private double salario;
 	
 	
 	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getMediaInscritos() {
 		return mediaInscritos;
 	}

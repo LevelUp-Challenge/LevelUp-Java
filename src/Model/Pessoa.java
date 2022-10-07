@@ -1,16 +1,14 @@
  package Model;
 
-import java.time.LocalDate;
-import java.time.Period;
 
 public class Pessoa extends Login{
 	private String nome;
 	private String idade;
-	private LocalDate dataNasc;
-	private int telefone;
+	private String dataNasc;
+	private String telefone;
 	private String email;
 	private String sexo;
-	private int cpf;
+	private String cpf;
 	private String status;
 	
 	public Pessoa() {
@@ -19,7 +17,7 @@ public class Pessoa extends Login{
 	
 	
 	public Pessoa(String nome, 
-			String idade, LocalDate dataNasc, int telefone,
+			String idade, String dataNasc, String telefone,
 			String email, String endereco, String login,
 			String senha, int id, String status) {
 		
@@ -48,14 +46,7 @@ public class Pessoa extends Login{
 	}
 
 
-	public int getCpf() {
-		return cpf;
-	}
-
-
-	public void setCpf(int cpf) {
-		this.cpf = cpf;
-	}
+	
 
 
 	public String getSexo() {
@@ -80,18 +71,7 @@ public class Pessoa extends Login{
 	public void setIdade(String idade) {
 		this.idade = idade;
 	}
-	public LocalDate getDataNasc() {
-		return dataNasc;
-	}
-	public void setDataNasc(LocalDate dataNasc) {
-		this.dataNasc = dataNasc;
-	}
-	public int getTelefone() {
-		return telefone;
-	}
-	public void setTelefone(int telefone) {
-		this.telefone = telefone;
-	}
+	
 	public String getEmail() {
 		return email;
 	}
@@ -104,5 +84,36 @@ public class Pessoa extends Login{
 		return userId;
 	
 	}
+
+
+	public String getDataNasc() {
+		return dataNasc;
+	}
+
+
+	public void setDataNasc(String dataNasc) {
+		this.dataNasc = dataNasc;
+	}
+
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+
+
+	public String getCpf() {
+		return cpf;
+	}
+
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+	
 
 }

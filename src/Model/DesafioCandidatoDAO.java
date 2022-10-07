@@ -8,6 +8,13 @@ import java.sql.SQLException;
 public class DesafioCandidatoDAO implements IDAO {
 	Connection con;
 	DesafioCandidato dc;
+	
+	
+
+	public DesafioCandidatoDAO(Connection con) {
+		super();
+		this.con = con;
+	}
 
 	public Connection getCon() {
 		return con;
@@ -19,13 +26,16 @@ public class DesafioCandidatoDAO implements IDAO {
 
 	public String inserir(Object obj) {
 		dc = (DesafioCandidato) obj;
-		String sql = "insert into T_LUP_DESAFIO_CANDIDATO (st_aprovacao, ds_pontuacao, ds_tempo_aplicacao)"
-				+ "values (?, ?, ?)";
+		String sql = "insert into T_LUP_DESAFIO_CANDIDATO (id_teste_vaga, ds_aprovacao, ds_pontuacao, ds_tempo_aplicacao, ds_aprovado)"
+				+ "values (?, ?, ?, ?, ?)";
 		try {
 			PreparedStatement ps = getCon().prepareStatement(sql);
-			ps.setString(1, dc.getStatus());
-			ps.setInt(2, dc.getPontuacao());
-			ps.setString(3, dc.getTempoAplicacao());
+			ps.setInt(1, dc.getIdDesafioCandidato());
+			ps.setString(2, dc.getAprovacao());
+			ps.setInt(3, dc.getPontuacao());
+			ps.setString(4, dc.getTempoAplicacao());
+			ps.setString(5, dc.getStatus());
+		
 			if (ps.executeUpdate() > 0) {
 				return "Desafio do Candidato inserido com sucesso!";
 			} else {
