@@ -1,5 +1,7 @@
 package Model;
 
+import java.util.ArrayList;
+
 public interface IDAO {
 	
 	public String inserir(Object obj);
@@ -8,6 +10,6 @@ public interface IDAO {
 	
 	public String excluir(Object obj);
 	
-	public String listarTodos();
+	public ArrayList<String> listar(int id);
 
 }

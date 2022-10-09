@@ -8,7 +8,18 @@ public class ViewFormacao {
 
 	public static void main(String[] args) {
 		FormacaoController fc = new FormacaoController();
-		JOptionPane.showMessageDialog(null, fc.cadastrarFormacao(1, "abcde", "abcde", "abcde", "abcde", "abcde"));
+		
+		//JOptionPane.showMessageDialog(null, fc.cadastrarFormacao(2, "abcde", "abcde", "abcde", "abcde", "abcde"));
+		
+		//JOptionPane.showMessageDialog(null, fc.alterarFormacao(1, "AAAA", "abcde", "abcde", "abcde", "abcde"));
+		
+		
+		//REVISAR
+		JOptionPane.showMessageDialog(null, fc.deletarFormacao(2));
+
+		
+		
+
 	
 
 	}

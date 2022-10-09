@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class CertificadosDAO implements IDAO {
 	
@@ -50,6 +51,7 @@ public class CertificadosDAO implements IDAO {
 			PreparedStatement ps = getCon().prepareStatement(sql);
 			ps.setString(1, c.getDescricao());
 			ps.setString(2, c.getCurso());
+			ps.setInt(3, c.getIdCertificados());
 			if (ps.executeUpdate() > 0) {
 				return "Descrição do certificado alterado com sucesso!";
 			} else {
@@ -66,7 +68,7 @@ public class CertificadosDAO implements IDAO {
 		String sql = "delete from T_LUP_CERTIFICADOS where id_certificados = ?";
 		try {
 			PreparedStatement ps = getCon().prepareStatement(sql);
-			ps.setString(1, c.getCurso());
+			ps.setInt(1, c.getIdCertificados());
 			if (ps.executeUpdate() > 0) {
 				return "Certificado excluido com sucesso!";	
 			} else {
@@ -78,25 +80,27 @@ public class CertificadosDAO implements IDAO {
 	}
 
 
-	public String listar() {
-		String sql = "select * from T_LUP_CERTIFICADOS";
-		String lista = "Lista de Certificados:\n\n";
+	public ArrayList<String> listar(int id) {
+		String sql = "select * from t_lup_certificados where id_certificados = ?";
+		ArrayList<String> result = new ArrayList<String>();
 		try {
 			PreparedStatement ps = getCon().prepareStatement(sql);
+			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
-			if (rs != null) {
-				while (rs.next()) {
-					lista += "Nome do curso: " + rs.getString(1) +".\n";
-					lista += "Descrição do curso: " + rs.getString(2) + ".\n";
-					lista += "-------------\n";
-				}
-				return lista;
+			if (rs.next()) {
+				result.add(rs.getString(1));
+				result.add(rs.getString(2));		
+				result.add(rs.getString(3));		
+				return result;
+		
 			}else {
-				return "Não há nenhum certificado cadastrado!";
+				return null;
 			}
+			
 		} catch (SQLException e) {
-			return e.getMessage();
+			return null;
 		}
+
 	}
 
 }

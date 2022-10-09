@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class CandidatoDAO implements IDAO {
 	private Connection con;
@@ -54,9 +55,9 @@ public class CandidatoDAO implements IDAO {
 	public String alterar(Object obj) {
 		candidato = (Candidato) obj;
 
-		String sql = "update candidato set nm_candidato = ?,sx_candidato = ?,dt_nascimento = ?,"
-				+ "ds_email = ?, nr_telefone = ?, ds_cpf = ?, ds_login = ?, ds_senha = ?,"
-				+ "  st_login = ?, ds_perfil_candidato = ?, ds_biografia, ds_interesses = ?";
+		String sql = "update t_lup_candidato set nm_candidato =?,sx_candidato=?,dt_nascimento=?"
+				+ "ds_email =?,nr_telefone =?,ds_login =?,ds_cpf =?,st_login =?,ds_senha =?,ds_perfil_candidato =?"
+				+ "ds_biografia,ds_intereses =?";
 		sql += "where id_candidato = ?";
 		try {
 			PreparedStatement ps = getCon().prepareStatement(sql);
@@ -86,7 +87,7 @@ public class CandidatoDAO implements IDAO {
 	public String excluir(Object obj) {
 		candidato = (Candidato) obj;
 
-		String sql = "delete from candidato where id_candidato = ?";
+		String sql = "delete from t_lup_candidato where id_candidato = ?";
 
 		try {
 			PreparedStatement ps = getCon().prepareStatement(sql);
@@ -101,40 +102,40 @@ public class CandidatoDAO implements IDAO {
 		}
 	}
 	
-	public String listarTodos() {
-		String sql = "select * from candidato";
-		String listacandidato = "Lista dos Candidatos\n\n";
+	public ArrayList<String> listar(int id) {
+		String sql = "select * from t_lup_certificados where id_certificados = ?";
+		ArrayList<String> result = new ArrayList<String>();
 		try {
 			PreparedStatement ps = getCon().prepareStatement(sql);
+			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
-			if (rs != null) {
-				while (rs.next()) {
-
-					listacandidato += "id candidato: " + rs.getInt(1) + "\n";
-					listacandidato += "Nome candidato: " + rs.getString(2) + "\n";
-					listacandidato += "Sexo candidato: " + rs.getString(3) + "\n";
-					listacandidato += "Data de Nascimento: " + rs.getString(4) + "\n";
-					listacandidato += "Email: " + rs.getString(5) + "\n";
-					listacandidato += "Telefone: " + rs.getString(6) + "\n";
-					listacandidato += "CPF: " + rs.getString(7) + "\n";
-					listacandidato += "Login: " + rs.getString(8) + "\n";
-					listacandidato += "Senha: " + rs.getString(9) + "\n";
-					listacandidato += "Status: " + rs.getString(10) + "\n";
-					listacandidato += "Dados complementares perfil: " + rs.getString(11) + "\n";
-					listacandidato += "Dados biografia: " + rs.getString(12) + "\n";
-					listacandidato += "Dados Interesses: " + rs.getString(13) + "\n";
-					listacandidato += "\n--------------------------------------\n";
-
-				}
-				return listacandidato;
-
-			} else {
+			if (rs.next()) {
+				result.add(rs.getString(1));
+				result.add(rs.getString(2));		
+				result.add(rs.getString(3));		
+				result.add(rs.getString(4));		
+				result.add(rs.getString(5));		
+				result.add(rs.getString(6));		
+				result.add(rs.getString(7));		
+				result.add(rs.getString(8));		
+				result.add(rs.getString(9));		
+				result.add(rs.getString(10));		
+				result.add(rs.getString(11));		
+				result.add(rs.getString(12));		
+				result.add(rs.getString(13));		
+				return result;
+		
+			}else {
 				return null;
 			}
+			
 		} catch (SQLException e) {
-			return e.getMessage();
+			return null;
 		}
+
 	}
+	
+	
 	
 	
 

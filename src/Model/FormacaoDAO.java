@@ -2,10 +2,12 @@ package Model;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 
-public class FormacaoDAO {
+public class FormacaoDAO implements IDAO {
 	private Connection con;
 	Formacao fc = new Formacao();
 	
@@ -25,8 +27,6 @@ public class FormacaoDAO {
 	
 	
 	public String inserir(Object obj) {
-
-			
 		fc = (Formacao) obj;
 		String sql = "insert into T_LUP_FORMACAO (id_curriculo, ds_grau_formacao, "
 				+ "dt_conclusao, dt_inicio, nm_formacao, nm_instituicao)"
@@ -49,16 +49,69 @@ public class FormacaoDAO {
 		}
 	}
 	public String alterar(Object obj) {
+		fc = (Formacao) obj;
+		String sql = "update T_LUP_FORMACAO set ds_grau_formacao =?, "
+				+ "dt_conclusao =?, dt_inicio =?, nm_formacao =?, nm_instituicao =?";
+		sql += "where id_curriculo =?";
+		try {
+			PreparedStatement ps = getCon().prepareStatement(sql);
+			ps.setString(1, fc.getGrauFormacao());
+			ps.setString(2, fc.getDtTermino());
+			ps.setString(3, fc.getDtInicio());
+			ps.setString(4, fc.getNmFormacao());
+			ps.setString(5, fc.getNmInstituicao());
+			ps.setInt(6, fc.getId());
+			if (ps.executeUpdate() > 0) {
+				return "inserido com sucesso!";
+			} else {
+				return "Erro ao inserir!";
+			}
+		} catch (SQLException e) {
+			return e.getMessage();
+		}
 		
-		return null;
+				
+		
 	}
 	public String excluir(Object obj) {
-
-		return null;
+		String sql = "delete T_LUP_FORMACAO where id_curriculo =?";
+		try {
+			PreparedStatement ps = getCon().prepareStatement(sql);
+			ps.setInt(1, fc.getId());
+			if (ps.executeUpdate() > 0) {
+				return "inserido com sucesso!";
+			} else {
+				return "Erro ao inserir!";
+			}
+		} catch (SQLException e) {
+			return e.getMessage();
+		}
+		
 	}
-	public String listarTodos() {
+	public ArrayList<String> listar(int id) {
+		String sql = "select * from T_LUP_FORMACAO where id_curriculo =?";
+		ArrayList<String> result = new ArrayList<String>();
+		try {
+			PreparedStatement ps = getCon().prepareStatement(sql);
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				result.add(rs.getString(1));
+				result.add(rs.getString(2));		
+				result.add(rs.getString(3));		
+				result.add(rs.getString(4));		
+				result.add(rs.getString(5));		
+				result.add(rs.getString(6));		
+				return result;
+		
+			}else {
+				return null;
+			}
+			
+		} catch (SQLException e) {
+			return null;
+		}
 
-		return null;
 	}
 	
 	

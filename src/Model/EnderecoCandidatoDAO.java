@@ -4,8 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
-public class EnderecoCandidatoDAO {
+public class EnderecoCandidatoDAO implements IDAO {
 	Connection con;
 	EnderecoCandidato ecdao;
 
@@ -51,8 +52,9 @@ public class EnderecoCandidatoDAO {
 
 	public String alterar(Object obj) {
 		ecdao = (EnderecoCandidato) obj;
-		String sql = "update t_lup_endereco set" + " ds_bairro = ?, ds_logradouro = ?, ds_cidade = ?, ds_cep = ?"
-				+ "ds_ponto_ref = ?, nm_estado = ?, sg_estado = ?, nr_logradouro = ?, " + "ds_complemento_numero = ? ";
+		String sql = "update t_lup_endereco set ds_bairro =?, ds_logradouro =?, ds_cidade =?, ds_cep =?,"
+				+ "ds_ponto_ref =?, nm_estado =?, sg_estado =?, nr_logradouro =?, "
+				+ "ds_complemento_numero =?";
 		sql += "where id_endereco = ?";
 		try {
 			PreparedStatement ps = getCon().prepareStatement(sql);
@@ -93,36 +95,36 @@ public class EnderecoCandidatoDAO {
 		}
 	}
 	
-	public String listarTodos() {
-		String sql = "select * from t_lup_endereco";
-		String listaendcandidato = "Lista dos Endereços candidato:\n\n";
+	public ArrayList<String> listar(int id) {
+		String sql = "select * from t_lup_endereco where id_endereco = ?";
+		ArrayList<String> result = new ArrayList<String>();
 		try {
 			PreparedStatement ps = getCon().prepareStatement(sql);
+			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
-			if (rs != null) {
-				while (rs.next()) {
-
-					listaendcandidato += "id candidato: " + rs.getInt(1) + "\n";
-					listaendcandidato += "Bairro: " + rs.getString(2) + "\n";
-					listaendcandidato += "Logradouro: " + rs.getString(3) + "\n";
-					listaendcandidato += "Cidade: " + rs.getString(4) + "\n";
-					listaendcandidato += "Cep: " + rs.getString(5) + "\n";
-					listaendcandidato += "Ponto de referencia: " + rs.getString(6) + "\n";
-					listaendcandidato += "Estado: " + rs.getString(7) + "\n";
-					listaendcandidato += "Sigla estado: " + rs.getString(8) + "\n";
-					listaendcandidato += "Logradouro: " + rs.getInt(9) + "\n";
-					listaendcandidato += "Complemento: " + rs.getString(10) + "\n";
-					listaendcandidato += "\n--------------------------------------\n";
-
-				}
-				return listaendcandidato;
-
-			} else {
+			if (rs.next()) {
+				result.add(rs.getString(1));
+				result.add(rs.getString(2));		
+				result.add(rs.getString(3));		
+				result.add(rs.getString(4));		
+				result.add(rs.getString(5));		
+				result.add(rs.getString(6));		
+				result.add(rs.getString(7));		
+				result.add(rs.getString(8));		
+				result.add(rs.getString(9));		
+				result.add(rs.getString(10));		
+				return result;
+		
+			}else {
 				return null;
 			}
+			
 		} catch (SQLException e) {
-			return e.getMessage();
+			return null;
 		}
+
 	}
+	
+
 	
 }

@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class ContatoRecrutadorDAO implements IDAO {
 	Connection con;
@@ -87,29 +88,33 @@ public class ContatoRecrutadorDAO implements IDAO {
 			return e.getMessage();
 		}
 	}
-	public String listarTodos() {
-		String sql = "select * from t_lup_contato_recrutador ";
-		String listaContatoRecrutador = "Lista dos contatos do Recrutador\n\n";
+	public ArrayList<String> listar(int id) {
+		String sql = "select * from t_lup_contato_recrutador where id_contato = ?";
+		ArrayList<String> result = new ArrayList<String>();
 		try {
-			
 			PreparedStatement ps = getCon().prepareStatement(sql);
+			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
-			if (rs != null) {
-				while (rs.next()) {
-					listaContatoRecrutador += "Id: " + rs.getInt(1);
-					listaContatoRecrutador += "emails: " + rs.getString(2);
-					listaContatoRecrutador += "Telefone: +" + rs.getInt(5) + rs.getInt(4) +" " +  rs.getInt(3);
-					
-				}
-				return listaContatoRecrutador;
-
-			} else {
+			if (rs.next()) {
+				result.add(rs.getString(1));
+				result.add(rs.getString(2));		
+				result.add(rs.getString(3));		
+				result.add(rs.getString(4));		
+				result.add(rs.getString(5));		
+				return result;
+		
+			}else {
 				return null;
 			}
+			
 		} catch (SQLException e) {
-			return e.getMessage();
+			return null;
 		}
+
+	}
+		
+	
 	}
 	
 	
-}
+

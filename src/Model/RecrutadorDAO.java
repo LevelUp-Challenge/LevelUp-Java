@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class RecrutadorDAO implements IDAO {
 	private Connection con;
@@ -45,7 +46,7 @@ public class RecrutadorDAO implements IDAO {
 
 	public String alterar(Object obj) {
 		recrutador = (Recrutador) obj;
-		String sql = "update recrutador set nm_recrutador = ?,ds_login = ?, ds_senha = ?, ds_ares_recrutamento = ?, ds_ativo = ?";
+		String sql = "update t_lup_recrutador set nm_recrutador = ?,ds_login = ?, ds_senha = ?, ds_areas_recrutamento = ?";
 		sql += "where id_recrutador=?";
 		try {
 			PreparedStatement ps = getCon().prepareStatement(sql);
@@ -53,8 +54,7 @@ public class RecrutadorDAO implements IDAO {
 			ps.setString(2, recrutador.getLogin());
 			ps.setString(3, recrutador.getSenha());
 			ps.setString(4, recrutador.getAreas_recrutamento());
-			ps.setString(5, recrutador.getStatus());
-			ps.setInt(6, recrutador.getId());
+			ps.setInt(5, recrutador.getId());
 
 			if (ps.executeUpdate() > 0) {
 				return "Alterado com sucesso!";
@@ -68,8 +68,7 @@ public class RecrutadorDAO implements IDAO {
 
 	public String excluir(Object obj) {
 		recrutador = (Recrutador) obj;
-		String sql = "delete from recrutador where codigo = ?";
-		sql += "where id_recrutador=?";
+		String sql = "delete from t_lup_recrutador where id_recrutador = ?";
 		try {
 			PreparedStatement ps = getCon().prepareStatement(sql);
 			ps.setInt(1, recrutador.getId());
@@ -83,33 +82,32 @@ public class RecrutadorDAO implements IDAO {
 			return e.getMessage();
 		}
 	}
-
-	public String listarTodos() {
-		String sql = "Select * from recrutador";
-		String listarRecrutador = "Lista Recrutadores\n\n";
-
+	
+	public ArrayList<String> listar(int id) {
+		String sql = "select * from t_lup_recrutador where id_recrutador = ?";
+		ArrayList<String> result = new ArrayList<String>();
 		try {
 			PreparedStatement ps = getCon().prepareStatement(sql);
+			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
-			if (rs != null) {
-				while (rs.next()) {
-					listarRecrutador += "Id: " + rs.getString(1);
-					listarRecrutador += "Nome: " + rs.getString(2);
-					listarRecrutador += "Login: " + rs.getString(3);
-					listarRecrutador += "Senha: " + rs.getString(4);
-					listarRecrutador += "Areas de Recrutamento: " + rs.getString(5);
-					listarRecrutador += "Status: " + rs.getString(6);
-
-				}
-				return listarRecrutador;
-			} else {
+			if (rs.next()) {
+				result.add(rs.getString(1));
+				result.add(rs.getString(2));		
+				result.add(rs.getString(3));		
+				result.add(rs.getString(4));		
+				result.add(rs.getString(5));		
+				return result;
+		
+			}else {
 				return null;
 			}
+			
 		} catch (SQLException e) {
-			return e.getMessage();
-
+			return null;
 		}
 
 	}
+
+	
 
 }

@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class ProcessoSeletivoDAO implements IDAO {
 	
@@ -55,20 +56,23 @@ public class ProcessoSeletivoDAO implements IDAO {
 
 	public String alterar(Object obj) {
 		pcsl = (ProcessoSeletivo) obj;
-		String sql = "update T_LUP_PROCESSO_SELETIVO set ds_descricao_vaga = ?, ds_salario = ?, ds_beneficios_vaga = ?,"
-				+ "ds_modalidade_vaga = ?, pcd_aplicavel = ?, ts_desafio = ?, qt_inscritos = ?, md_sexo_inscritos"
+		String sql = "update T_LUP_PROCESSO_SELETIVO set ds_nome_vaga =?, ds_descricao_vaga=?, ds_area_vaga=?, ds_salario=?,"
+				+ "ds_beneficios_vaga=?, "
+				+ "ds_modalidade_vaga=?, pcd_aplicavel=?, ts_desafio=?, qt_inscritos=?, md_sexo_inscritos=?"
 				+ "where id_vaga = ?";
 		try {
 			PreparedStatement ps = getCon().prepareStatement(sql);
-			ps.setString(1, pcsl.getDescricaoVaga());
-			ps.setDouble(2, pcsl.getSalario());
-			ps.setString(3, pcsl.getBeneficiosVaga());
-			ps.setString(4, pcsl.getModalidadeVaga());
-			ps.setString(5, pcsl.getPcdAplicavel());
-			ps.setString(6, pcsl.getDesafio());
-			ps.setInt(7, pcsl.getInscritos());
-			ps.setString(8, pcsl.getNomeVaga());
-			ps.setString(9, pcsl.getMediaInscritos());
+			ps.setString(1, pcsl.getNomeVaga());
+			ps.setString(2, pcsl.getDescricaoVaga());
+			ps.setString(3, pcsl.getAreaVaga());
+			ps.setDouble(4, pcsl.getSalario());
+			ps.setString(5, pcsl.getBeneficiosVaga());
+			ps.setString(6, pcsl.getModalidadeVaga());
+			ps.setString(7, pcsl.getPcdAplicavel());
+			ps.setString(8, pcsl.getDesafio());
+			ps.setInt(9, pcsl.getInscritos());
+			ps.setString(10, pcsl.getMediaInscritos());
+			ps.setInt(11, pcsl.getId());
 
 			if (ps.executeUpdate() > 0) {
 				return "Processo seletivo alterado com sucesso!";
@@ -85,7 +89,7 @@ public class ProcessoSeletivoDAO implements IDAO {
 		String sql = "delete from T_LUP_PROCESSO_SELETIVO where id_vaga = ?";
 		try {
 			PreparedStatement ps = getCon().prepareStatement(sql);
-			ps.setString(1, pcsl.getNomeVaga());
+			ps.setInt(1, pcsl.getId());
 			if (ps.executeUpdate() > 0) {
 				return "Processo Seletivo excluido com sucesso!";	
 			} else {
@@ -96,32 +100,35 @@ public class ProcessoSeletivoDAO implements IDAO {
 		}
 	}
 
-	public String listarTodos() {
-		String sql = "select * from T_LUP_PROCESSO_SELETIVO";
-		String lista = "Lista de Processos Seletivos:\n\n";
+	public ArrayList<String> listar(int id) {
+		String sql = "select * from T_LUP_PROCESSO_SELETIVO where id_vaga = ?";
+		ArrayList<String> result = new ArrayList<String>();
 		try {
 			PreparedStatement ps = getCon().prepareStatement(sql);
+			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
-			if (rs != null) {
-				while (rs.next()) {
-					lista += "Nome da vaga: " + rs.getString(1) +".\n";
-					lista += "Descrição da vaga: " + rs.getString(2) + ".\n";
-					lista += "Salário: " + rs.getString(3) + ".\n";
-					lista += "Beneficios: "  + rs.getString(4) + ".\n";
-					lista += "Modalidade: " + rs.getString(5) + ".\n";
-					lista += "PCD Aplicável: " + rs.getString(6) + ".\n";
-					lista += "Desafio: "  + rs.getString(7) + ".\n";
-					lista += "Quantidade de inscritos: "  + rs.getString(8) + ".\n";
-					lista += "Media sexo inscritos: "  + rs.getString(9) + ".\n";
-					lista += "-------------\n";
-				}
-				return lista;
+			if (rs.next()) {
+				result.add(rs.getString(1));
+				result.add(rs.getString(2));		
+				result.add(rs.getString(3));		
+				result.add(rs.getString(4));		
+				result.add(rs.getString(5));		
+				result.add(rs.getString(6));		
+				result.add(rs.getString(7));		
+				result.add(rs.getString(8));		
+				result.add(rs.getString(9));		
+				result.add(rs.getString(10));		
+				result.add(rs.getString(11));		
+				return result;
+		
 			}else {
-				return "Não há nenhum processo seletivo cadastrado!";
+				return null;
 			}
+			
 		} catch (SQLException e) {
-			return e.getMessage();
+			return null;
 		}
+
 	}
 
 }

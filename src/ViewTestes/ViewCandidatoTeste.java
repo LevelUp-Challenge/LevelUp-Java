@@ -14,6 +14,8 @@ public class ViewCandidatoTeste {
 		JOptionPane.showMessageDialog(null, cc.cadastrarCandidato("J", "M", "J", 
 				"A", "A", "A", "A", "A", "A", "A", "A", "A", 1));
 		
+		
+		
 	
 		
 		

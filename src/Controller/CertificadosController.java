@@ -53,12 +53,17 @@ String resultado;
 			}
 	public ArrayList<String> listarCertificados(int id) {
 		ArrayList<String> resultado = new ArrayList<String>();
-		Certificados cer = new Certificados();
 		Connection con = Conexao.abrirConexao();
 		CertificadosDAO cerdao = new CertificadosDAO(con);
 		resultado = cerdao.listar(id);
+		Conexao.fecharConexao(con);
+		if (resultado != null) {
+			return resultado;
+			
+		}else {
+			return null;
+		}
 		
-		return resultado;
 		
 		
 	}
