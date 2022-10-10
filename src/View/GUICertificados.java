@@ -7,15 +7,17 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+
+import Controller.CertificadosController;
 
 @SuppressWarnings("serial")
 public class GUICertificados extends JPanel {
 
 	private JLabel lbCertificados, lbCursos;
 	private TextField tfCertificados, tfCursos;
-	private JButton btnSalvar, btnCancelar;
-	private JButton btPesquisa, btNovo, btAtualiiza, btApaga, btCancelar, btContatos;
+	private JButton btPesquisa, btNovo, btAtualiiza, btApaga, btCancelar;
 
 	public GUICertificados() {
 		inicializarComponentes();
@@ -40,11 +42,6 @@ public class GUICertificados extends JPanel {
 		tfCertificados = new TextField();
 		tfCursos = new TextField();
 
-		btnSalvar = new JButton("Salvar");
-		btnCancelar = new JButton("Cancelar");
-
-		add(btnCancelar);
-		add(btnSalvar);
 		add(lbCertificados);
 		add(tfCertificados);
 		add(lbCursos);
@@ -70,30 +67,63 @@ public class GUICertificados extends JPanel {
 		btCancelar.setBounds(340, 200, 60, 40);
 		
 
-		//btnSalvar.setBounds(80, 180, 130, 30);
-		//btnCancelar.setBounds(80, 180, 130, 30);
 
 	}
 
 	public void definirEventos() {
-
-		btnSalvar.addActionListener(new ActionListener() {
-
+		btNovo.addActionListener(new ActionListener() {
+			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
+				String certificado = tfCertificados.getText();
+				String cursos = tfCursos.getText();
+				
+				if (certificado.equals("") || cursos.equals("")) {
+					JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
+					
+				} else {
+					CertificadosController gc = new CertificadosController();
+					JOptionPane.showMessageDialog(null, gc.cadastrarCertificados(1, certificado, cursos));
 
+				}
+				
+				
+			}
+		});
+		btAtualiiza.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String certificado = tfCertificados.getText();
+				String cursos = tfCursos.getText();
+				
+				if (certificado.equals("") || cursos.equals("")) {
+					JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
+					
+				} else {
+					CertificadosController gc = new CertificadosController();
+					String aux = JOptionPane.showInputDialog("Digite o id que deseja alterar: ");
+					int id = Integer.parseInt(aux);
+					JOptionPane.showMessageDialog(null, gc.alterarCertificados(id, certificado, cursos));
+
+				}
+				
+			}
+		});
+		btApaga.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				CertificadosController gc = new CertificadosController();
+
+				String aux = JOptionPane.showInputDialog("Digite o id que deseja apagar: ");
+				int id = Integer.parseInt(aux);
+				JOptionPane.showInputDialog(gc.deletarCertificados(id));
+				
 			}
 		});
 
-		btnCancelar.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
-
-			}
-		});
+		
 
 	}
 

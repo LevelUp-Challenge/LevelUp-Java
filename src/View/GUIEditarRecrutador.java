@@ -9,14 +9,18 @@ import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+
+import Controller.ContatoRecrutadorController;
+import Controller.RecrutadorController;
 
 public class GUIEditarRecrutador extends JPanel {
 
 	private JLabel lbEmail, lbTelefone, lbDdd, lbDdi;
 	private TextField tfEmail, tfTelefone, tfDdd, tfDdi;
-	private JButton btPesquisa, btNovo, btAtualiiza, btApaga, btCancelar;
+	private JButton btPesquisa, btNovo, btAtualiiza, btApaga, btCancelar, btAdd;
 
 	private JLabel lbNomeRecrutador, lbLogin, lbSenha, lbAreaRecrutamento;
 	private TextField tfNomeRecrutador, tflogin, tfSenha, tfAreaRecrutamento;
@@ -63,6 +67,7 @@ public class GUIEditarRecrutador extends JPanel {
 		btAtualiiza = new JButton(new ImageIcon(getClass().getResource("img/update_icon.png")));
 		btApaga = new JButton(new ImageIcon(getClass().getResource("img/delete_icon.png")));
 		btCancelar = new JButton(new ImageIcon(getClass().getResource("img/exit_icon.png")));
+		btAdd = new JButton("Adicionar contato");
 
 		tfEmail = new TextField();
 		tfTelefone = new TextField();
@@ -94,6 +99,7 @@ public class GUIEditarRecrutador extends JPanel {
 		add(tflogin);
 		add(lbImagem);
 		add(tfSenha);
+		add(btAdd);
 
 		lbEmail.setBounds(50, 40, 200, 25);
 		tfEmail.setBounds(50, 70, 300, 25);
@@ -119,63 +125,126 @@ public class GUIEditarRecrutador extends JPanel {
 		rbRh.setBounds(400, 270, 150, 25);
 		rbTi.setBounds(400, 300, 150, 25);
 		lbImagem.setBounds(700, 100, 200, 200);
-		
-		btPesquisa.setBounds(50, 350, 60, 40);
-		btNovo.setBounds(120, 350, 60, 40);
-		btAtualiiza.setBounds(190, 350, 60, 40);
-		btApaga.setBounds(260, 350, 60, 40);
-		btCancelar.setBounds(310, 350, 60, 40);
 
+		btPesquisa.setBounds(400, 350, 60, 40);
+		//btNovo.setBounds(470, 350, 60, 40);
+		btAtualiiza.setBounds(470, 350, 60, 40);
+		btApaga.setBounds(540, 350, 60, 40);
+		btCancelar.setBounds(610, 350, 60, 40);
+		btAdd.setBounds(50, 350, 170 , 40);
 
 	}
 
 	public void definirEventos() {
-	rbTi.addActionListener(new ActionListener() {
-			
+		rbTi.addActionListener(new ActionListener() {
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				imagem1 = new ImageIcon(getClass().getResource("perfis/foto1.png"));
 				lbImagem.setIcon(imagem1);
-				
-				
+
 			}
 		});
 		rbBanco.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				imagem1 = new ImageIcon(getClass().getResource("perfis/foto4.png"));
 				lbImagem.setIcon(imagem1);
-				
+
 			}
 		});
 		rbInfra.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				imagem1 = new ImageIcon(getClass().getResource("perfis/foto3.png"));
 				lbImagem.setIcon(imagem1);
-				
+
 			}
 		});
 		rbRh.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				imagem1 = new ImageIcon(getClass().getResource("perfis/foto2.png"));
-				lbImagem.setIcon(imagem1);				
+				lbImagem.setIcon(imagem1);
 			}
 		});
-//		btContatos.addActionListener(new ActionListener() {
-//
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				setLayout(null);
-//				GUIContatoRecrutador cr = new GUIContatoRecrutador();
-//				setLayout((LayoutManager) cr);
-//
-//			}
-//		});
+		btAdd.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String tel = tfTelefone.getText();
+				String ddd = tfDdd.getText();
+				String ddi = tfDdd.getText();
+				String email = tfEmail.getText();
+				ContatoRecrutadorController crc = new ContatoRecrutadorController();
+				int telF = Integer.parseInt(tel);
+				int dddF = Integer.parseInt(ddd);
+				int ddiF = Integer.parseInt(ddi);
+
+				if (tel.equals("") || ddd.equals("") || ddi.equals("") ) {
+					JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
+					
+				} else {
+					JOptionPane.showMessageDialog(null, crc.cadastrarContatoRecrutador(1, email, telF, dddF, ddiF) );
+
+				}
+				
+			}
+		});
+		btAtualiiza.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				lbImagem.setIcon(imagem1);
+				String nome = tfNomeRecrutador.getText();
+				String login = tflogin.getText();
+				String senha = tfSenha.getText();
+				String AreaRecrutamento = "";
+				String email = tfEmail.getText();
+				String tel = tfTelefone.getText();
+				String ddd = tfDdd.getText();
+				String ddi = tfDdd.getText();
+				
+				int telF = Integer.parseInt(tel);
+				int dddF = Integer.parseInt(ddd);
+				int ddiF = Integer.parseInt(ddi);
+
+
+
+				if (rbBanco.isSelected()) {
+
+					AreaRecrutamento = "Gestor banco de dados";
+
+				} else if (rbInfra.isSelected()) {
+
+					AreaRecrutamento = "Chefe de Infra-Estrutura";
+
+				} else if (rbTi.isSelected()) {
+					AreaRecrutamento = "Tecnologia da informacao";
+				} else {
+					AreaRecrutamento = "Chefe de RH";
+
+				}
+				String areaRec = AreaRecrutamento;
+
+				if (nome.equals("") || login.equals("") || senha.equals("")) {
+					JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
+
+				} else {
+					RecrutadorController r = new RecrutadorController();
+					String aux = JOptionPane.showInputDialog("Digite o id que deseja alterar");
+					int id = Integer.parseInt(aux);
+					JOptionPane.showMessageDialog(null, r.alterarRecrutador(id, nome, login, senha, areaRec));
+					
+
+				}
+
+			}
+		});
+
 
 	}
 

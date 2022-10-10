@@ -22,7 +22,7 @@ public class GUIMenuPrincipal extends JFrame {
 	private JMenuBar menuBar;
 	private JMenu mnArquivo, mnCandidato, mnRecrutador, mnSobre, mnAjuda;
 	private JMenuItem miSair, miCadastroCandidato, miEditarInformaçõesCan, miCadastroRecrutador, miEditarInformaçõesRec,
-			miVagas, miCadastroVagas, miEditarVagas, miCertificados;
+			miVagas, miCadastroVagas, miEditarVagas, miCertificados, miEndereco;
 	
 
 
@@ -55,6 +55,7 @@ public class GUIMenuPrincipal extends JFrame {
 		miEditarVagas = new JMenuItem("Editar Vagas");
 		miEditarInformaçõesRec = new JMenuItem("Editar Informações");
 		miCertificados = new JMenuItem("Certificados");
+		miEndereco = new JMenuItem("Endereco Candidato");
 
 		setJMenuBar(menuBar);
 		menuBar.add(mnArquivo);
@@ -69,12 +70,14 @@ public class GUIMenuPrincipal extends JFrame {
 		mnCandidato.add(miEditarInformaçõesCan);
 		mnCandidato.add(miVagas);
 		mnCandidato.add(miCertificados);
+		mnCandidato.add(miEndereco);
 
 		mnRecrutador.add(miCadastroRecrutador);
 		mnRecrutador.add(miEditarInformaçõesRec);
 		mnRecrutador.add(miCadastroVagas);
 		mnRecrutador.add(miEditarVagas);
 		mnRecrutador.add(miVagas);
+		
 		
 
 
@@ -146,6 +149,17 @@ public class GUIMenuPrincipal extends JFrame {
 				contentPane.add(er);
 				contentPane.validate();
 
+			}
+		});
+		miEndereco.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				GUIEndereco ge = new GUIEndereco();contentPane.removeAll();
+				setBounds(0, 0, 500, 700);
+				contentPane.add(ge);
+				contentPane.validate();
+				
 			}
 		});
 

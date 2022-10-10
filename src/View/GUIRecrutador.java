@@ -29,8 +29,7 @@ public class GUIRecrutador extends JPanel {
 	private ImageIcon imagem1;
 	private JLabel lbImagem;
 
-//	private JList<String> liFotos;
-//	private JScrollPane sp;
+
 
 	private JButton btnSalvar, btnCancelar;
 
@@ -47,10 +46,7 @@ public class GUIRecrutador extends JPanel {
 			fotos[i] = "foto" + (i+1);
 			
 		}
-//		liFotos = new JList<String>(fotos);
-//		sp = new JScrollPane(liFotos);
-//		sp.setBounds(400, 70, 70, 150 );
-//		lbImagem.setBounds(520, 70, 180, 180);
+
 		
 		lbImagem = new JLabel(imagem1);
 		imagem1 = new ImageIcon();
@@ -81,7 +77,6 @@ public class GUIRecrutador extends JPanel {
 		tfNomeRecrutador = new TextField();
 		tflogin = new TextField();
 		tfSenha = new TextField();
-		//tfAreaRecrutamento = new TextField();
 
 		btnSalvar = new JButton("Salvar");
 		btnCancelar = new JButton("Cancelar");
@@ -93,10 +88,8 @@ public class GUIRecrutador extends JPanel {
 		add(tfNomeRecrutador);
 		add(tflogin);
 		add(tfSenha);
-		//add(tfAreaRecrutamento);
 		add(btnSalvar);
 		add(btnCancelar);
-//		add(sp);
 		add(lbImagem);
 
 		lbNomeRecrutador.setBounds(50, 40, 60, 25);
@@ -114,7 +107,6 @@ public class GUIRecrutador extends JPanel {
 		rbRh.setBounds(50, 330, 150, 25);
 		rbTi.setBounds(50, 360, 150, 25);
 		lbImagem.setBounds(450, 100, 200, 200);
-		//tfAreaRecrutamento.setBounds(50, 280, 300, 25);
 
 		btnSalvar.setBounds(50, 420, 130, 30);
 		btnCancelar.setBounds(250, 420, 130, 30);

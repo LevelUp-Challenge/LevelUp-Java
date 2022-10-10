@@ -10,11 +10,11 @@ public class ViewCertificados {
 		
 		CertificadosController cc = new CertificadosController();
 		
-		//JOptionPane.showMessageDialog(null, cc.cadastrarCertificados(1, "logica programacao", "fiap"));
+		JOptionPane.showMessageDialog(null, cc.cadastrarCertificados(3, "logica programacao", "fiap"));
 		
 		//JOptionPane.showMessageDialog(null, cc.alterarCertificados(13, "logica algoritmo", "fiap"));
 		
-		JOptionPane.showMessageDialog(null, cc.deletarCertificados(1));
+		//JOptionPane.showMessageDialog(null, cc.deletarCertificados(1));
 
 
 	}
