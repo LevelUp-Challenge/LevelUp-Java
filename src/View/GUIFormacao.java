@@ -3,18 +3,29 @@ package View;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+
+import Controller.ContatoRecrutadorController;
+import Controller.FormacaoCandidatoController;
+import Controller.FormacaoController;
 
 @SuppressWarnings("serial")
 public class GUIFormacao extends JPanel {
 
 	private JLabel lbGrauFormacao, lbNmFormacao, lbInstituicao, lbDataI, lbDataC, lbTipoFormacao, lbStatusFormacao;
 	private TextField tfGrauFormacao, tfNmFormacao, tfInstituicao, tfDataI, tfDataC, tfTipoFormacao, tfStatusFormacao;
-
-	private JButton btnSalvar, btnCancelar;
+	private JButton btPesquisa, btNovo, btAtualiiza, btApaga, btCancelar;;
+	private JRadioButton rbCursando, rbConcluido, rbIncompleto;
+	private ButtonGroup buttonGroup;
 
 	public GUIFormacao() {
 		inicializarComponentes();
@@ -23,7 +34,7 @@ public class GUIFormacao extends JPanel {
 	}
 
 	public void inicializarComponentes() {
-		setBounds(0, 0, 600, 300);
+		setBounds(0, 0, 600, 600);
 		setLayout(null);
 
 		lbGrauFormacao = new JLabel("Grau de formação:");
@@ -42,8 +53,20 @@ public class GUIFormacao extends JPanel {
 		tfTipoFormacao = new TextField();
 		tfStatusFormacao = new TextField();
 
-		btnSalvar = new JButton("Salvar");
-		btnCancelar = new JButton("Cancelar");
+		rbConcluido = new JRadioButton("Concluido");
+		rbCursando = new JRadioButton("Cursando");
+		rbIncompleto = new JRadioButton("Incompleto");
+
+		buttonGroup = new ButtonGroup();
+		buttonGroup.add(rbConcluido);
+		buttonGroup.add(rbCursando);
+		buttonGroup.add(rbIncompleto);
+
+		btPesquisa = new JButton(new ImageIcon(getClass().getResource("img/search_icon.png")));
+		btNovo = new JButton(new ImageIcon(getClass().getResource("img/new_icon.png")));
+		btAtualiiza = new JButton(new ImageIcon(getClass().getResource("img/update_icon.png")));
+		btApaga = new JButton(new ImageIcon(getClass().getResource("img/delete_icon.png")));
+		btCancelar = new JButton(new ImageIcon(getClass().getResource("img/exit_icon.png")));
 
 		add(lbGrauFormacao);
 		add(lbNmFormacao);
@@ -59,6 +82,14 @@ public class GUIFormacao extends JPanel {
 		add(tfDataC);
 		add(tfTipoFormacao);
 		add(tfStatusFormacao);
+		add(btApaga);
+		add(btAtualiiza);
+		add(btCancelar);
+		add(btNovo);
+		add(btPesquisa);
+		add(rbConcluido);
+		add(rbCursando);
+		add(rbIncompleto);
 
 		lbNmFormacao.setBounds(230, 40, 130, 25);
 		tfNmFormacao.setBounds(230, 70, 300, 25);
@@ -75,23 +106,25 @@ public class GUIFormacao extends JPanel {
 		lbDataC.setBounds(390, 250, 130, 25);
 		tfDataC.setBounds(390, 280, 130, 25);
 
-		lbInstituicao.setBounds(230, 290, 130, 25);
-		tfInstituicao.setBounds(230, 320, 250, 25);
+		lbTipoFormacao.setBounds(230, 320, 130, 25);
+		tfTipoFormacao.setBounds(230, 360, 250, 25);
 
-		lbTipoFormacao.setBounds(230, 360, 130, 25);
-		tfTipoFormacao.setBounds(230, 390, 250, 25);
+		lbStatusFormacao.setBounds(230, 400, 130, 25);
+		rbConcluido.setBounds(230, 430, 100, 25);
+		rbCursando.setBounds(330, 430, 100, 25);
+		rbIncompleto.setBounds(440, 430, 100, 25);
 
-		lbStatusFormacao.setBounds(230, 430, 130, 25);
-		tfStatusFormacao.setBounds(230, 460, 130, 25); // alterar posteriormente
-
-		btnSalvar.setBounds(230, 400, 130, 30);
-		btnCancelar.setBounds(390, 400, 130, 30);
+		btPesquisa.setBounds(230, 470, 60, 40);
+		btNovo.setBounds(300, 470, 60, 40);
+		btAtualiiza.setBounds(370, 470, 60, 40);
+		btApaga.setBounds(440, 470, 60, 40);
+		btCancelar.setBounds(500, 470, 60, 40);
 
 	}
 
 	public void definirEventos() {
 
-		btnSalvar.addActionListener(new ActionListener() {
+		btCancelar.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -99,16 +132,116 @@ public class GUIFormacao extends JPanel {
 
 			}
 		});
-
-		btnCancelar.addActionListener(new ActionListener() {
+		btNovo.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
 
+				FormacaoCandidatoController fcc = new FormacaoCandidatoController();
+				FormacaoController fc = new FormacaoController();
+
+				String nmFormacao = tfNmFormacao.getText();
+				String grFormacao = tfGrauFormacao.getText();
+				String instituicao = tfInstituicao.getText();
+				String dtInicio = tfDataI.getText();
+				String dtTermino = tfDataC.getText();
+				String tpFormacao = tfTipoFormacao.getText();
+
+				String status = "";
+
+				if (rbConcluido.isSelected()) {
+					status = "Concluido";
+
+				} else if (rbCursando.isSelected()) {
+					status = "Cursando";
+
+				} else {
+					status = "Incompleto";
+				}
+				String statusSelected = status;
+
+				if (nmFormacao.equals("") || grFormacao.equals("") || instituicao.equals("") || dtInicio.equals("")
+						|| dtTermino.equals("") || tpFormacao.equals("")) {
+					JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
+
+				} else {
+					JOptionPane.showMessageDialog(null, fcc.cadastrarFormacaoCandidato(10, tpFormacao, statusSelected));
+					JOptionPane.showMessageDialog(null,
+							fc.cadastrarFormacao(10, grFormacao, dtInicio, dtTermino, nmFormacao, instituicao));
+
+				}
+
+			}
+
+		});
+		btAtualiiza.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				FormacaoCandidatoController fcc = new FormacaoCandidatoController();
+				FormacaoController fc = new FormacaoController();
+
+				String nmFormacao = tfNmFormacao.getText();
+				String grFormacao = tfGrauFormacao.getText();
+				String instituicao = tfInstituicao.getText();
+				String dtInicio = tfDataI.getText();
+				String dtTermino = tfDataC.getText();
+				String tpFormacao = tfTipoFormacao.getText();
+
+				String status = "";
+
+				if (rbConcluido.isSelected()) {
+					status = "Concluido";
+
+				} else if (rbCursando.isSelected()) {
+					status = "Cursando";
+
+				} else {
+					status = "Incompleto";
+				}
+				String statusSelected = status;
+
+				if (nmFormacao.equals("") || grFormacao.equals("") || instituicao.equals("") || dtInicio.equals("")
+						|| dtTermino.equals("") || tpFormacao.equals("")) {
+					JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
+
+				} else {
+					JOptionPane.showMessageDialog(null, fcc.alterarFormacaoCandidato(2, tpFormacao, statusSelected));
+					JOptionPane.showMessageDialog(null,
+							fc.alterarFormacao(2, grFormacao, dtInicio, dtTermino, nmFormacao, instituicao));
+
+				}
+
+			}
+		});
+		btApaga.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				FormacaoCandidatoController fcc = new FormacaoCandidatoController();
+				FormacaoController fc = new FormacaoController();
+				String aux = JOptionPane.showInputDialog("Digite o id que deseja apagar: ");
+				int id = Integer.parseInt(aux);
+				
+				if (id <= 0) {
+					JOptionPane.showMessageDialog(null, "O id fornecido é invalido! digite um Id valido!");
+					
+				} else {
+					JOptionPane.showMessageDialog(null, fc.deletarFormacao(id));
+					JOptionPane.showMessageDialog(null, fcc.deletarFormacaoCandidato(id));
+
+				}
+				
+			}
+		});
+		btPesquisa.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//
+				
 			}
 		});
 
 	}
-
 }

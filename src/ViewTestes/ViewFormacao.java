@@ -14,8 +14,8 @@ public class ViewFormacao {
 		//JOptionPane.showMessageDialog(null, fc.alterarFormacao(1, "AAAA", "abcde", "abcde", "abcde", "abcde"));
 		
 		
-		//REVISAR
-		JOptionPane.showMessageDialog(null, fc.deletarFormacao(2));
+		//REVISAR DELETAR N FUNCIONA
+		JOptionPane.showMessageDialog(null, fc.deletarFormacao(1));
 
 		
 		

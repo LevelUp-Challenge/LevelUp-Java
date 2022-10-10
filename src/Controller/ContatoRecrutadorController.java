@@ -51,7 +51,7 @@ public class ContatoRecrutadorController {
 		ContatoRecrutador cr = new ContatoRecrutador();
 		ContatoRecrutadorDAO crdao = new ContatoRecrutadorDAO(con);
 		cr.setIdRecrutador(id);
-		resultado = crdao.alterar(cr);
+		resultado = crdao.excluir(cr);
 		Conexao.fecharConexao(con);
 		return resultado;
 		

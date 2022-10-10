@@ -72,7 +72,6 @@ public class ContatoRecrutadorDAO implements IDAO {
 		crdao = (ContatoRecrutador) obj;
 		String sql = "delete from t_lup_contato_recrutador where id_contato = ?";
 
-		
 		try {
 			PreparedStatement ps = getCon().prepareStatement(sql);
 			ps.setInt(1, crdao.getIdRecrutador());

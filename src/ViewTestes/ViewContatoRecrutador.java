@@ -16,7 +16,6 @@ public class ViewContatoRecrutador {
 		
 		
 		
-		//REVISAR POIS DA ERRO.
 		JOptionPane.showMessageDialog(null, rc.deletarContatoRecrutador(1));
 
 	

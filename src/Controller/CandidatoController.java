@@ -9,12 +9,11 @@ import Model.Conexao;
 public class CandidatoController {
 	
 	//REVISAR
-	public String cadastrarCandidato(String nome, 
-			String sexo,  String Email,
+	public String cadastrarCandidato(int id ,String nome, 
+			String sexo, String dtNasc,  String Email, String tel,
 			 String dsPerfil, String biografia,
-			 String interesses, String dtNasc, String tel, 
-			 String login, String cpf, String status, 
-			 String senha, int id ) {
+			 String interesses, 
+			 String login, int cpf, String status, String senha ) {
 		
 	String resultado;
 	Connection con = Conexao.abrirConexao();

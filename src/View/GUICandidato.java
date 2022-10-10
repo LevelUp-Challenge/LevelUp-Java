@@ -9,7 +9,6 @@ import javax.swing.*;
 
 import Controller.CandidatoController;
 
-
 @SuppressWarnings("serial")
 public class GUICandidato extends JPanel {
 	
@@ -39,6 +38,10 @@ public class GUICandidato extends JPanel {
 	private JButton btnSalvar;
 	private JButton btnLimparCampos;
 	private JButton btnCancelar;
+	private JRadioButton rbMasculino, rbFeminino, rbNaoInformar;
+	private ButtonGroup buttonGroup;
+
+	private JButton btPesquisa, btNovo, btAtualiiza, btApaga, btCancelar;;
 	
 	
 	public GUICandidato() {
@@ -62,6 +65,12 @@ public class GUICandidato extends JPanel {
 		lbDsBiografia = new JLabel("Descrição Biografia:");
 		lbInteresses = new JLabel("Descrição Interesses*:");
 		
+		btPesquisa = new JButton(new ImageIcon(getClass().getResource("img/search_icon.png")));
+		btNovo = new JButton(new ImageIcon(getClass().getResource("img/new_icon.png")));
+		btAtualiiza = new JButton(new ImageIcon(getClass().getResource("img/update_icon.png")));
+		btApaga = new JButton(new ImageIcon(getClass().getResource("img/delete_icon.png")));
+		btCancelar = new JButton(new ImageIcon(getClass().getResource("img/exit_icon.png")));
+		
 		//Instanciando textField
 		tfNome = new TextField();
 		tfSexo = new TextField();
@@ -77,6 +86,16 @@ public class GUICandidato extends JPanel {
 		btnSalvar = new JButton("Salvar");
 		btnLimparCampos = new JButton("Limpar Campos");
 		btnCancelar = new JButton("Cancelar");
+		
+		
+		rbMasculino = new JRadioButton("Concluido");
+		rbFeminino = new JRadioButton("Cursando");
+		rbNaoInformar = new JRadioButton("Incompleto");
+
+		buttonGroup = new ButtonGroup();
+		buttonGroup.add(rbMasculino);
+		buttonGroup.add(rbFeminino);
+		buttonGroup.add(rbNaoInformar);
 		
 		//Adicionando ao form
 		add(lbNome);
@@ -105,12 +124,12 @@ public class GUICandidato extends JPanel {
 		
 		add(lbInteresses);
 		add(tfInteresses);
-		
+	
 		add(btnCancelar);
 		add(btnSalvar);
 		add(btnLimparCampos);
 
-		
+	
 		
 		
 		//Posicionando labels e textField
@@ -144,10 +163,13 @@ public class GUICandidato extends JPanel {
 		btnSalvar.setBounds(230, 830, 130, 30);
 		btnCancelar.setBounds(390, 830, 130, 30);
 		btnLimparCampos.setBounds(30, 20, 130, 20);
-		
-		
-		
+
 	}
+	
+		
+		
+			
+
 	public void definirEventos() {
 		btnSalvar.addActionListener(new ActionListener() {
 			
@@ -168,11 +190,10 @@ public class GUICandidato extends JPanel {
 				String interesses = tfInteresses.getText();
 				int id = 1234;
 				
-				System.out.println(cc.cadastrarCandidato(nome, sx, email, dsPerfil, bio, interesses, nasc, tel, login, cpf, staus, senha, id));
-				System.exit(0);
+				//System.out.println(cc.cadastrarCandidato(nome, sx, email, dsPerfil, bio, interesses, nasc, tel, login, cpf, staus, senha, id));
+				//System.exit(0);
 			
-			}
-		});
+			}});
 		btnCancelar.addActionListener(new ActionListener() {
 			
 			@Override
@@ -190,13 +211,8 @@ public class GUICandidato extends JPanel {
 			}
 		});
 		
+	
+
 	}
-
-	
-	
-	
-
-	
-	
-
 }
+

@@ -26,7 +26,7 @@ public class CandidatoDAO implements IDAO {
 		candidato = (Candidato) obj;
 		String sql = "insert into t_lup_candidato(id_candidato,nm_candidato,sx_candidato,dt_nascimento"
 				+ "ds_email,nr_telefone,ds_login,ds_cpf,st_login,ds_senha,ds_perfil_candidato"
-				+ "ds_biografia,ds_intereses) values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+				+ "ds_biografia,ds_interesses) values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		try {
 			PreparedStatement ps = getCon().prepareStatement(sql);
 			ps.setInt(1, candidato.getId());
@@ -36,7 +36,7 @@ public class CandidatoDAO implements IDAO {
 			ps.setString(5, candidato.getEmail());
 			ps.setString(6, candidato.getTelefone());
 			ps.setString(7, candidato.getLogin());
-			ps.setString(8, candidato.getCpf());
+			ps.setInt(8, candidato.getCpf());
 			ps.setString(9, candidato.getStatus());
 			ps.setString(10, candidato.getSenha());
 			ps.setString(11, candidato.getDadosPerfilCandidato());
@@ -66,7 +66,7 @@ public class CandidatoDAO implements IDAO {
 			ps.setString(3, candidato.getIdade());
 			ps.setString(4, candidato.getEmail());
 			ps.setString(5, candidato.getTelefone());
-			ps.setString(6, candidato.getCpf());
+			ps.setInt(8, candidato.getCpf());
 			ps.setString(7, candidato.getLogin());
 			ps.setString(8, candidato.getSenha());
 			ps.setString(9, candidato.getStatus());

@@ -7,7 +7,7 @@ import Controller.EnderecoController;
 public class ViewEndereco {
 
 	public static void main(String[] args) {
-		//REVISAR
+		//REVISAR, VALORES DEMAIS
 		EnderecoController ec = new EnderecoController();
 		
 		JOptionPane.showMessageDialog(null, ec.cadastroEndereco(1, "abc", "abc", "abc", 3, "abc", "abc", "abc", 2, "abc"));

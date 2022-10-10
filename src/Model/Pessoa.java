@@ -8,7 +8,7 @@ public class Pessoa extends Login{
 	private String telefone;
 	private String email;
 	private String sexo;
-	private String cpf;
+	private int cpf;
 	private String status;
 	
 	public Pessoa() {
@@ -106,14 +106,16 @@ public class Pessoa extends Login{
 	}
 
 
-	public String getCpf() {
+	public int getCpf() {
 		return cpf;
 	}
 
 
-	public void setCpf(String cpf) {
+	public void setCpf(int cpf) {
 		this.cpf = cpf;
 	}
+
+
 	
 
 }
