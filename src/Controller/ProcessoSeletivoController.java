@@ -1,5 +1,6 @@
 package Controller;
 
+import java.lang.reflect.Array;
 import java.sql.Connection;
 import java.util.ArrayList;
 
@@ -7,6 +8,7 @@ import Model.Conexao;
 import Model.FormacaoDAO;
 import Model.ProcessoSeletivo;
 import Model.ProcessoSeletivoDAO;
+import View.GUIProcessoSeletivo;
 
 public class ProcessoSeletivoController {
 	
@@ -39,6 +41,38 @@ public class ProcessoSeletivoController {
 		resultado = psdao.inserir(ps);
 		Conexao.fecharConexao(con);
 		return resultado;
+		
+	}
+//	public String listarTodos() {
+//		String resultado;
+//		Connection con = Conexao.abrirConexao();
+//		ProcessoSeletivoDAO psdao = new ProcessoSeletivoDAO(con);
+//		resultado = psdao.ListarTodos();
+//		Conexao.fecharConexao(con);
+//		if (resultado != null) {
+//			return resultado;
+//			
+//		} else {
+//			return null;
+//
+//		}
+//		
+//		
+//	}
+	public String listaTodosArray() {
+		String resultado = new String();
+		Connection con = Conexao.abrirConexao();
+		ProcessoSeletivoDAO psdao = new ProcessoSeletivoDAO(con);
+		resultado = psdao.ListarTodos();
+		Conexao.fecharConexao(con);
+		if (resultado != null) {
+			return resultado;
+			
+		}else {
+			return null;
+		}
+		
+
 		
 	}
 	public String alterarProcesso(int id

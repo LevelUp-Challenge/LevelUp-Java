@@ -14,7 +14,6 @@ public class GUIEndereco extends JPanel {
 
 	private JLabel lbRua, lbNumero, lbBairro, lbCidade, lbCep, lbPontoRef, lbEstado, lbComplemento, lbSgEstado;
 	private JTextField tfRua, tfNumero, tfBairro, tfCidade, tfCep, tfPontoRef, tfEstado, tfComplemento, tfSgEstado;
-	private JButton btnSalvar, btnCancelar;
 	private JButton btPesquisa, btNovo, btAtualiiza, btApaga, btCancelar;
 
 	public GUIEndereco() {
@@ -47,8 +46,7 @@ public class GUIEndereco extends JPanel {
 		tfComplemento = new JTextField();
 		tfSgEstado = new JTextField();
 
-		btnSalvar = new JButton("Salvar");
-		btnCancelar = new JButton("Cancelar");
+		
 		btPesquisa = new JButton(new ImageIcon(getClass().getResource("img/search_icon.png")));
 		btNovo = new JButton(new ImageIcon(getClass().getResource("img/new_icon.png")));
 		btAtualiiza = new JButton(new ImageIcon(getClass().getResource("img/update_icon.png")));
@@ -75,8 +73,6 @@ public class GUIEndereco extends JPanel {
 		add(tfEstado);
 		add(tfComplemento);
 		add(tfCidade);
-		add(btnSalvar);
-		add(btnCancelar);
 		add(btApaga);
 		add(btAtualiiza);
 		add(btCancelar);
@@ -110,8 +106,6 @@ public class GUIEndereco extends JPanel {
 		lbComplemento.setBounds(30, 420, 160, 25);
 		tfComplemento.setBounds(30, 450, 200, 25);
 
-		btnSalvar.setBounds(130, 760, 130, 30);
-		btnCancelar.setBounds(290, 760, 130, 30);
 
 		btPesquisa.setBounds(30, 500, 60, 40);
 		btNovo.setBounds(100, 500, 60, 40);

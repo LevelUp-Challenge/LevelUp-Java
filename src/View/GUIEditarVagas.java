@@ -1,29 +1,22 @@
 package View;
 
-//import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import Controller.ProcessoSeletivoController;
 
-@SuppressWarnings("serial")
-public class GUIProcessoSeletivo extends JPanel {
-
+public class GUIEditarVagas extends JLabel {
 	private JLabel lbVaga, lbDescricao, lbArea, lbSalario, lbBeneficios, lbModalidade, lbPcd, lbDesafio, lbInscritos, lbMediaSexo;
 	private JTextField tfVaga, tfDescricao, tfArea, tfSalario, tfBeneficios, tfModalidade, tfPcd, tfDesafio, tfInscritos, tfMediaSexo;
-
-	private JButton btnSalvar, btnCancelar;
-
-	public GUIProcessoSeletivo() {
+	private JButton  btAtualiiza, btApaga, btCancelar ;
+	
+	public GUIEditarVagas() {
 		inicializarComponentes();
 		definirEventos();
 
@@ -32,6 +25,11 @@ public class GUIProcessoSeletivo extends JPanel {
 	public void inicializarComponentes() {
 		setBounds(0, 0, 600, 750);
 		setLayout(null);
+		
+		
+		btAtualiiza = new JButton(new ImageIcon(getClass().getResource("img/update_icon.png")));
+		btApaga = new JButton(new ImageIcon(getClass().getResource("img/delete_icon.png")));
+		btCancelar = new JButton(new ImageIcon(getClass().getResource("img/exit_icon.png")));
 
 		lbVaga = new JLabel("Nome da Vaga");
 		tfVaga = new JTextField();
@@ -65,8 +63,6 @@ public class GUIProcessoSeletivo extends JPanel {
 		
 		
 
-		btnCancelar = new JButton("Cancelar");
-		btnSalvar = new JButton("Salvar");
 
 		add(lbVaga);
 		add(tfVaga);
@@ -98,8 +94,10 @@ public class GUIProcessoSeletivo extends JPanel {
 		add(lbMediaSexo);
 		add(tfMediaSexo);
 
-		add(btnSalvar);
-		add(btnCancelar);
+		add(btApaga);
+		add(btAtualiiza);
+		add(btCancelar);
+
 		
 		lbVaga.setBounds(30, 40, 160, 25);
 		tfVaga.setBounds(30, 70, 200, 25);
@@ -131,16 +129,15 @@ public class GUIProcessoSeletivo extends JPanel {
 		lbMediaSexo.setBounds(300, 250, 200, 25);
 		tfMediaSexo.setBounds(300, 280, 200, 25);
 		
-
+	
+		btAtualiiza.setBounds(300, 350, 60, 40);
+		btApaga.setBounds(380, 350, 60, 40);
+		btCancelar.setBounds(460, 350, 60, 40);
 		
-		btnSalvar.setBounds(30, 490, 130, 30);
-		btnCancelar.setBounds(190, 490, 130, 30);
-
-
 	}
-
+	
 	public void definirEventos() {
-		btnCancelar.addActionListener(new ActionListener() {
+		btCancelar.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -148,10 +145,11 @@ public class GUIProcessoSeletivo extends JPanel {
 				
 			}
 		});
-		btnSalvar.addActionListener(new ActionListener() {
+		btAtualiiza.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				ProcessoSeletivoController psc = new ProcessoSeletivoController();
 				String vaga = tfVaga.getText();
 				String desc = tfDescricao.getText();
 				String area = tfArea.getText();
@@ -166,13 +164,25 @@ public class GUIProcessoSeletivo extends JPanel {
 				double salarioF = Double.parseDouble(salario);
 				int inscritosF = Integer.parseInt(inscritos);
 				
-				ProcessoSeletivoController psc = new ProcessoSeletivoController();
-				JOptionPane.showMessageDialog(null, psc.cadastroProcesso(1, vaga, desc, area, salarioF, beneficios, modalidade, pcd, desa, inscritosF, media));
+				String aux = JOptionPane.showInputDialog("Digite o id que deseja atualizar: ");
+				int id = Integer.parseInt(aux);
 				
-				
+				JOptionPane.showMessageDialog(null, psc.alterarProcesso(id, vaga, desc, area, salarioF, beneficios, modalidade, pcd, desa, inscritosF, media));
 				
 			}
 		});
+		btCancelar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ProcessoSeletivoController psc = new ProcessoSeletivoController();
 
+				String aux = JOptionPane.showInputDialog("Digite o id que deseja Excluir: ");
+				int id = Integer.parseInt(aux);	
+				JOptionPane.showMessageDialog(null, psc.deletarProcesso(id));
+			}
+		});
+		
 	}
+
 }

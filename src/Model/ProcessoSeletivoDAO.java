@@ -99,6 +99,53 @@ public class ProcessoSeletivoDAO implements IDAO {
 			return e.getMessage();
 		}
 	}
+	
+	public String ListarTodos() {
+		String sql = "select * from T_LUP_PROCESSO_SELETIVO ";
+		String listaVagas = new String();
+		try {
+			PreparedStatement ps = getCon().prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			if (rs != null) {
+				 while (rs.next()) {
+//					 listaVagas.add(rs.getString(1));
+//					 listaVagas.add(rs.getString(2));
+//					 listaVagas.add(rs.getString(3));
+//					 listaVagas.add(rs.getString(4));
+//					 listaVagas.add(rs.getString(5));
+//					 listaVagas.add(rs.getString(6));
+//					 listaVagas.add(rs.getString(7));
+//					 listaVagas.add(rs.getString(8));
+//					 listaVagas.add(rs.getString(9));
+//					 listaVagas.add(rs.getString(10));
+//					 listaVagas.add(rs.getString(11));
+					 
+				listaVagas += "Id Vaga: " + rs.getString(1) + "\n\n";
+				listaVagas += "Nome Vaga: " + rs.getString(2) + "\n\n";
+				listaVagas += "Descricao Vaga: " + rs.getString(3) + "\n\n";
+				listaVagas += "Area Vaga: " + rs.getString(4) + "\n\n";
+				listaVagas += "Salario Vaga: " + rs.getString(5) + "\n\n";
+				listaVagas += "Beneficios Vaga: " + rs.getString(6) + "\n\n";
+				listaVagas += "Modalidade Vaga: " + rs.getString(7) + "\n\n";
+				listaVagas += "PCD Vaga: " + rs.getString(8) + "\n\n";
+				listaVagas += "Desafio Vaga: " + rs.getString(9) + "\n\n";
+				listaVagas += "Quantidade inscritos Vaga: " + rs.getString(10) + "\n\n";
+				listaVagas += "Media de inscritos Vaga: " + rs.getString(1) + "\n\n";
+				 }
+				 return listaVagas;
+				
+				
+			
+		
+			}else {
+				return null;
+			}
+			
+		} catch (SQLException e) {
+			return null;
+		}
+		
+	}
 
 	public ArrayList<String> listar(int id) {
 		String sql = "select * from T_LUP_PROCESSO_SELETIVO where id_vaga = ?";

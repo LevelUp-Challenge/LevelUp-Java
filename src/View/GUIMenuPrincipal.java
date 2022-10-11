@@ -84,6 +84,18 @@ public class GUIMenuPrincipal extends JFrame {
 	}
 
 	private void definirEventos() {
+		miCadastroVagas.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				GUIProcessoSeletivo gps = new GUIProcessoSeletivo();
+				contentPane.removeAll();
+				setBounds(0, 0, 650, 700);
+				contentPane.add(gps);
+				contentPane.validate();
+				
+			}
+		});
 		miCertificados.addActionListener(new ActionListener() {
 			
 			@Override
@@ -149,6 +161,31 @@ public class GUIMenuPrincipal extends JFrame {
 				contentPane.add(er);
 				contentPane.validate();
 
+			}
+		});
+		miVagas.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				GUIListaVagas er = new GUIListaVagas();
+				contentPane.removeAll();
+				setBounds(0, 0, 800, 700);
+				contentPane.add(er);
+				contentPane.validate();
+				
+			}
+		});
+		miEditarVagas.addActionListener(new ActionListener() {
+			
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				GUIEditarVagas er = new GUIEditarVagas();
+				contentPane.removeAll();
+				setBounds(0, 0, 800, 700);
+				contentPane.add(er);
+				contentPane.validate();
+				
 			}
 		});
 		miEndereco.addActionListener(new ActionListener() {
