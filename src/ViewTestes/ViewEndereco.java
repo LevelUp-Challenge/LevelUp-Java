@@ -9,10 +9,9 @@ public class ViewEndereco {
 	public static void main(String[] args) {
 		//REVISAR, VALORES DEMAIS
 		EnderecoController ec = new EnderecoController();
+		//System.out.println(ec.cadastroEndereco(0, null, null, null, 0, null, null));
 		
-		JOptionPane.showMessageDialog(null, ec.cadastroEndereco(1, "abc", "abc", "abc", 3, "abc", "abc", "abc", 2, "abc"));
 		
-		//JOptionPane.showMessageDialog(null, ec.alterarEndereco(1, "aaaabbb", "abc", "abc", 3, "abc", "abc", "abc", 2, "abc"));
 
 
 	}

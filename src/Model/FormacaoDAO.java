@@ -30,15 +30,15 @@ public class FormacaoDAO implements IDAO {
 		fc = (Formacao) obj;
 		String sql = "insert into T_LUP_FORMACAO (id_curriculo, ds_grau_formacao, "
 				+ "dt_conclusao, dt_inicio, nm_formacao, nm_instituicao)"
-				+ "values (?,?,?,?,?,?)";
+				+ "values (SQ_LUP_FORMACAO.NEXTVAL,?,?,?,?,?)";
 		try {
 			PreparedStatement ps = getCon().prepareStatement(sql);
-			ps.setInt(1, fc.getId());
-			ps.setString(2, fc.getGrauFormacao());
-			ps.setString(3, fc.getDtTermino());
-			ps.setString(4, fc.getDtInicio());
-			ps.setString(5, fc.getNmFormacao());
-			ps.setString(6, fc.getNmInstituicao());
+			//ps.setInt(1, fc.getId());
+			ps.setString(1, fc.getGrauFormacao());
+			ps.setString(2, fc.getDtTermino());
+			ps.setString(3, fc.getDtInicio());
+			ps.setString(4, fc.getNmFormacao());
+			ps.setString(5, fc.getNmInstituicao());
 			if (ps.executeUpdate() > 0) {
 				return "inserido com sucesso!";
 			} else {

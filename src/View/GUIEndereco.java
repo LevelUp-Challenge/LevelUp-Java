@@ -1,20 +1,23 @@
 package View;
 
-import java.awt.*;
-import javax.swing.*;
-
-import Controller.EnderecoController;
-
-import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+import Controller.EnderecoController;
 
 @SuppressWarnings("serial")
 public class GUIEndereco extends JPanel {
 
-	private JLabel lbRua, lbNumero, lbBairro, lbCidade, lbCep, lbPontoRef, lbEstado, lbComplemento, lbSgEstado;
-	private JTextField tfRua, tfNumero, tfBairro, tfCidade, tfCep, tfPontoRef, tfEstado, tfComplemento, tfSgEstado;
-	private JButton btPesquisa, btNovo, btAtualiiza, btApaga, btCancelar;
+	private JLabel lbRua, lbLogradouro, lbBairro, lbCidade, lbCep, lbEstado, lbComplemento;
+	private JTextField tfRua, tfLogradouro, tfBairro, tfCidade, tfCep, tfEstado, tfComplemento;
+	private JButton btNovo, btAtualiiza, btApaga, btCancelar;
 
 	public GUIEndereco() {
 		inicializarComponentes();
@@ -27,49 +30,40 @@ public class GUIEndereco extends JPanel {
 		setLayout(null);
 
 		lbRua = new JLabel("Endereco completo: *");
-		lbNumero = new JLabel("Número");
+		lbLogradouro = new JLabel("Número");
 		lbBairro = new JLabel("Bairro");
 		lbCep = new JLabel("Codigo Postal");
-		lbPontoRef = new JLabel("Ponto de referência");
 		lbEstado = new JLabel("Estado");
 		lbCidade = new JLabel("Cidade");
 		lbComplemento = new JLabel("Complemento");
-		lbSgEstado = new JLabel("Sigla de estado");
 
 		tfRua = new JTextField();
-		tfNumero = new JTextField();
+		tfLogradouro = new JTextField();
 		tfBairro = new JTextField();
 		tfCidade = new JTextField();
 		tfCep = new JTextField();
-		tfPontoRef = new JTextField();
 		tfEstado = new JTextField();
 		tfComplemento = new JTextField();
-		tfSgEstado = new JTextField();
 
-		
-		btPesquisa = new JButton(new ImageIcon(getClass().getResource("img/search_icon.png")));
 		btNovo = new JButton(new ImageIcon(getClass().getResource("img/new_icon.png")));
 		btAtualiiza = new JButton(new ImageIcon(getClass().getResource("img/update_icon.png")));
 		btApaga = new JButton(new ImageIcon(getClass().getResource("img/delete_icon.png")));
 		btCancelar = new JButton(new ImageIcon(getClass().getResource("img/exit_icon.png")));
 
-		add(lbSgEstado);
-		add(tfSgEstado);
 		add(lbComplemento);
 		add(tfComplemento);
 		add(lbRua);
-		add(lbNumero);
+		add(lbLogradouro);
 		add(lbBairro);
 		add(lbCep);
-		add(lbPontoRef);
+		add(lbLogradouro);
+		add(tfLogradouro);
 		add(lbEstado);
 		add(lbCidade);
 		add(lbComplemento);
 		add(tfRua);
-		add(tfNumero);
 		add(tfBairro);
 		add(tfCep);
-		add(tfPontoRef);
 		add(tfEstado);
 		add(tfComplemento);
 		add(tfCidade);
@@ -77,13 +71,12 @@ public class GUIEndereco extends JPanel {
 		add(btAtualiiza);
 		add(btCancelar);
 		add(btNovo);
-		add(btPesquisa);
 
 		lbRua.setBounds(30, 40, 200, 25);
 		tfRua.setBounds(30, 70, 200, 25);
 
-		lbNumero.setBounds(210, 110, 60, 25);
-		tfNumero.setBounds(210, 140, 60, 25);
+		lbLogradouro.setBounds(210, 110, 60, 25);
+		tfLogradouro.setBounds(210, 140, 60, 25);
 
 		lbBairro.setBounds(30, 110, 160, 25);
 		tfBairro.setBounds(30, 140, 160, 25);
@@ -91,23 +84,15 @@ public class GUIEndereco extends JPanel {
 		lbCidade.setBounds(30, 180, 160, 25);
 		tfCidade.setBounds(30, 210, 160, 25);
 
-		lbSgEstado.setBounds(200, 180, 160, 25);
-		tfSgEstado.setBounds(200, 210, 60, 25);
-
 		lbCep.setBounds(30, 250, 160, 25);
 		tfCep.setBounds(30, 280, 160, 25);
-
-		lbPontoRef.setBounds(30, 310, 160, 25);
-		tfPontoRef.setBounds(30, 340, 250, 65);
 
 		lbEstado.setBounds(210, 250, 60, 25);
 		tfEstado.setBounds(210, 280, 60, 25);
 
-		lbComplemento.setBounds(30, 420, 160, 25);
-		tfComplemento.setBounds(30, 450, 200, 25);
+		lbComplemento.setBounds(30, 320, 160, 25);
+		tfComplemento.setBounds(30, 350, 200, 25);
 
-
-		btPesquisa.setBounds(30, 500, 60, 40);
 		btNovo.setBounds(100, 500, 60, 40);
 		btAtualiiza.setBounds(170, 500, 60, 40);
 		btApaga.setBounds(240, 500, 60, 40);
@@ -128,20 +113,15 @@ public class GUIEndereco extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				String endereco = tfRua.getText();
 				String bairro = tfBairro.getText();
-				String numero = tfNumero.getText();
+				String logradouro = tfLogradouro.getText();
 				String cidade = tfCidade.getText();
 				String estado = tfEstado.getText();
-				String sgEstado = tfSgEstado.getText();
-				String pontoRef = tfPontoRef.getText();
 				String complemento = tfComplemento.getText();
 				String cep = tfCep.getText();
-
-				int numeroF = Integer.parseInt(numero);
 				int cepF = Integer.parseInt(cep);
 
 				EnderecoController ec = new EnderecoController();
-				JOptionPane.showMessageDialog(null, ec.cadastroEndereco(1, bairro, endereco, cidade, cepF, pontoRef,
-						estado, sgEstado, numeroF, complemento));
+				System.out.println(ec.cadastroEndereco(bairro, logradouro, cidade, cepF, estado, complemento));
 
 			}
 		});
@@ -151,15 +131,11 @@ public class GUIEndereco extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				String endereco = tfRua.getText();
 				String bairro = tfBairro.getText();
-				String numero = tfNumero.getText();
+				String logradouro = tfLogradouro.getText();
 				String cidade = tfCidade.getText();
 				String estado = tfEstado.getText();
-				String sgEstado = tfSgEstado.getText();
-				String pontoRef = tfPontoRef.getText();
 				String complemento = tfComplemento.getText();
 				String cep = tfCep.getText();
-
-				int numeroF = Integer.parseInt(numero);
 				int cepF = Integer.parseInt(cep);
 
 				EnderecoController ec = new EnderecoController();
@@ -167,7 +143,7 @@ public class GUIEndereco extends JPanel {
 				int id = Integer.parseInt(aux);
 
 				JOptionPane.showMessageDialog(null,
-						ec.alterarEndereco(id, bairro, aux, cidade, cepF, pontoRef, estado, sgEstado, id, complemento));
+						ec.alterarEndereco(id, bairro, logradouro, cidade, cepF, estado, complemento));
 
 			}
 		});

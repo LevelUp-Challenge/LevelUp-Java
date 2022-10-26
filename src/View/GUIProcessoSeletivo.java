@@ -167,7 +167,7 @@ public class GUIProcessoSeletivo extends JPanel {
 				int inscritosF = Integer.parseInt(inscritos);
 				
 				ProcessoSeletivoController psc = new ProcessoSeletivoController();
-				JOptionPane.showMessageDialog(null, psc.cadastroProcesso(1, vaga, desc, area, salarioF, beneficios, modalidade, pcd, desa, inscritosF, media));
+				JOptionPane.showMessageDialog(null, psc.cadastroProcesso(vaga, desc, area, salarioF, beneficios, modalidade, pcd, desa, inscritosF, media));
 				
 				
 				

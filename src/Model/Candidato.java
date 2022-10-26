@@ -1,98 +1,33 @@
 package Model;
 
-
 public class Candidato extends Pessoa {
+	public class CandidatoTO extends Pessoa {
+		private int id;
 
-	private int idCandidato; 
-	private String dadosPerfilCandidato;
-	private String InteressesCandidato;
-	private String biografia;
-	private String email;
-	
-	public Candidato() {
-		
+		public CandidatoTO() {
+
+		}
+
+		public CandidatoTO(String nome, String idade, String dataNasc, String telefone, String email, String endereco,
+				String login, String senha, int id, String status, int idCandidato) {
+
+			super.setId(id);
+			super.setNome(nome);
+			super.setLogin(login);
+			super.setSenha(senha);
+			super.setIdade(idade);
+			super.setTelefone(telefone);
+
+			this.id = id;
+		}
+
+		public int getId() {
+			return id;
+		}
+
+		public void setId(int id) {
+			this.id = id;
+		}
 	}
-	
-	
-	public Candidato(String nome, String idade, 
-			String dataNasc, String telefone, String email, 
-			String endereco, String login, String senha, int id, 
-			String status, int idCandidato) {
-		
-		super.setNome(nome);
-		super.setIdade(idade);
-		super.setEmail(email);
-		super.setDataNasc(dataNasc);
-		super.setLogin(login);
-		super.setSenha(senha);
-		super.setTelefone(telefone);
-		super.setId(idCandidato);
-		super.setStatus(status);
-		
-		
-		this.idCandidato = idCandidato;
-	}
-	
-	
-	
-
-	public String getEmail() {
-		return email;
-	}
-
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-
-	public String getDadosPerfilCandidato() {
-		return dadosPerfilCandidato;
-	}
-
-
-	public void setDadosPerfilCandidato(String dadosPerfilCandidato) {
-		this.dadosPerfilCandidato = dadosPerfilCandidato;
-	}
-
-
-	public String getInteressesCandidato() {
-		return InteressesCandidato;
-	}
-
-
-	public void setInteressesCandidato(String interessesCandidato) {
-		InteressesCandidato = interessesCandidato;
-	}
-
-
-	public String getBiografia() {
-		return biografia;
-	}
-
-
-	public void setBiografia(String biografia) {
-		this.biografia = biografia;
-	}
-
-
-	
-	public int getIdCandidato() {
-		return idCandidato;
-	}
-	public void setIdCandidato(int idCandidato) {
-		this.idCandidato = idCandidato;
-	}
-	
-	public int calculaId() {
-		int userId = super.getId() + 1;
-		return userId;
-	
-	}
-
-	
-	
-	
-	
 
 }

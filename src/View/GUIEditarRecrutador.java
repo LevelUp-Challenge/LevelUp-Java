@@ -188,7 +188,7 @@ public class GUIEditarRecrutador extends JPanel {
 					JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
 					
 				} else {
-					JOptionPane.showMessageDialog(null, crc.cadastrarContatoRecrutador(1, email, telF, dddF, ddiF) );
+					JOptionPane.showMessageDialog(null, crc.cadastrarContatoRecrutador( email, telF, dddF, ddiF) );
 
 				}
 				

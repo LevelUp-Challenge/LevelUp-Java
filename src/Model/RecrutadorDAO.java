@@ -25,14 +25,14 @@ public class RecrutadorDAO implements IDAO {
 	public String inserir(Object obj) {
 		recrutador = (Recrutador) obj;
 		String sql = "insert into t_lup_recrutador (id_recrutador, nm_recrutador,"
-				+ "ds_login, ds_senha, ds_areas_recrutamento) values(?,?,?,?,?)";
+				+ "ds_login, ds_senha, ds_areas_recrutamento) values(SQ_LUP_RECRUTADOR.NEXTVAL,?,?,?,?)";
 		try {
 			PreparedStatement ps = getCon().prepareStatement(sql);
-			ps.setInt(1, recrutador.getId());
-			ps.setString(2, recrutador.getNome());
-			ps.setString(3, recrutador.getLogin());
-			ps.setString(4, recrutador.getSenha());
-			ps.setString(5, recrutador.getAreas_recrutamento());
+			//ps.setInt(1, recrutador.getId());
+			ps.setString(1, recrutador.getNome());
+			ps.setString(2, recrutador.getLogin());
+			ps.setString(3, recrutador.getSenha());
+			ps.setString(4, recrutador.getAreas_recrutamento());
 
 			if (ps.executeUpdate() > 0) {
 				return "Inserido com sucesso!";

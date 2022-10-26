@@ -28,14 +28,14 @@ public class DesafioCandidatoDAO implements IDAO {
 	public String inserir(Object obj) {
 		dc = (DesafioCandidato) obj;
 		String sql = "insert into T_LUP_DESAFIO_CANDIDATO (id_teste_vaga, ds_aprovacao, ds_pontuacao, ds_tempo_aplicacao, ds_aprovado)"
-				+ "values (?, ?, ?, ?, ?)";
+				+ "values (SQ_LUP_DESAFIO_CANDIDATO.NEXTVAL, ?, ?, ?, ?)";
 		try {
 			PreparedStatement ps = getCon().prepareStatement(sql);
-			ps.setInt(1, dc.getIdDesafioCandidato());
-			ps.setString(2, dc.getAprovacao());
-			ps.setInt(3, dc.getPontuacao());
-			ps.setString(4, dc.getTempoAplicacao());
-			ps.setString(5, dc.getStatus());
+			//ps.setInt(1, dc.getIdDesafioCandidato());
+			ps.setString(1, dc.getAprovacao());
+			ps.setInt(2, dc.getPontuacao());
+			ps.setString(3, dc.getTempoAplicacao());
+			ps.setString(4, dc.getStatus());
 		
 			if (ps.executeUpdate() > 0) {
 				return "Desafio do Candidato inserido com sucesso!";

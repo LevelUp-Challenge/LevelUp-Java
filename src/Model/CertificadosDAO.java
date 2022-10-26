@@ -26,12 +26,12 @@ public class CertificadosDAO implements IDAO {
 	public String inserir(Object obj) {
 		c = (Certificados) obj;
 		String sql = "insert into T_LUP_CERTIFICADOS (id_certificados, ds_certificados, ds_cursos)"
-				+ "values (?,?,?)";
+				+ "values (SQ_LUP_CERTIFICADOS.NEXTVAL,?,?)";
 		try {
 			PreparedStatement ps = getCon().prepareStatement(sql);
-			ps.setInt(1, c.getIdCertificados());
-			ps.setString(2, c.getDescricao());
-			ps.setString(3, c.getCurso());
+			ps.setString(1, c.getDescricao());
+			ps.setString(2, c.getCurso());
+
 			if (ps.executeUpdate() > 0) {
 				return "Certificado inserido com sucesso!";
 			} else {
@@ -45,7 +45,7 @@ public class CertificadosDAO implements IDAO {
 
 	public String alterar(Object obj) {
 		c = (Certificados) obj;
-		String sql = "update T_LUP_CERTIFICADOS set ds_certificados = ?, ds_cursos = ? "
+		String sql = "update T_LUP_CERTIFICADOS set ds_certificados = ?, ds_cursos = ?"
 				+ "where id_certificados = ?";
 		try {
 			PreparedStatement ps = getCon().prepareStatement(sql);

@@ -10,13 +10,12 @@ import Model.RecrutadorDAO;
 
 public class RecrutadorController {
 	
-	public String cadastrarRecrutador(int id, String nome, String login, String senha, String areasRecrutamento) {
+	public String cadastrarRecrutador(String nome, String login, String senha, String areasRecrutamento) {
 		String Resultado;
 		
 		Connection con = Conexao.abrirConexao();
 		Recrutador rd = new Recrutador();
 		RecrutadorDAO rdao = new RecrutadorDAO(con);
-		rd.setId(id);
 		rd.setNome(nome);
 		rd.setLogin(login);
 		rd.setSenha(senha);
@@ -62,7 +61,6 @@ public class RecrutadorController {
 		ArrayList<String> resultado = new ArrayList<String>();
 		Connection con = Conexao.abrirConexao();
 		RecrutadorDAO rdao = new RecrutadorDAO(con);
-		//resultado = rdao.listar(id);
 		Conexao.fecharConexao(con);
 		if (resultado != null) {
 			return resultado;
