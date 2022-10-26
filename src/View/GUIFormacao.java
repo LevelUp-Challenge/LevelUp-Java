@@ -23,7 +23,7 @@ public class GUIFormacao extends JPanel {
 
 	private JLabel lbGrauFormacao, lbNmFormacao, lbInstituicao, lbDataI, lbDataC, lbTipoFormacao, lbStatusFormacao;
 	private TextField tfGrauFormacao, tfNmFormacao, tfInstituicao, tfDataI, tfDataC, tfTipoFormacao, tfStatusFormacao;
-	private JButton btPesquisa, btNovo, btAtualiiza, btApaga, btCancelar;;
+	private JButton btNovo, btAtualiiza, btApaga, btCancelar;;
 	private JRadioButton rbCursando, rbConcluido, rbIncompleto;
 	private ButtonGroup buttonGroup;
 
@@ -62,7 +62,6 @@ public class GUIFormacao extends JPanel {
 		buttonGroup.add(rbCursando);
 		buttonGroup.add(rbIncompleto);
 
-		btPesquisa = new JButton(new ImageIcon(getClass().getResource("img/search_icon.png")));
 		btNovo = new JButton(new ImageIcon(getClass().getResource("img/new_icon.png")));
 		btAtualiiza = new JButton(new ImageIcon(getClass().getResource("img/update_icon.png")));
 		btApaga = new JButton(new ImageIcon(getClass().getResource("img/delete_icon.png")));
@@ -86,7 +85,6 @@ public class GUIFormacao extends JPanel {
 		add(btAtualiiza);
 		add(btCancelar);
 		add(btNovo);
-		add(btPesquisa);
 		add(rbConcluido);
 		add(rbCursando);
 		add(rbIncompleto);
@@ -114,11 +112,10 @@ public class GUIFormacao extends JPanel {
 		rbCursando.setBounds(330, 430, 100, 25);
 		rbIncompleto.setBounds(440, 430, 100, 25);
 
-		btPesquisa.setBounds(230, 470, 60, 40);
 		btNovo.setBounds(300, 470, 60, 40);
 		btAtualiiza.setBounds(370, 470, 60, 40);
 		btApaga.setBounds(440, 470, 60, 40);
-		btCancelar.setBounds(500, 470, 60, 40);
+		btCancelar.setBounds(510, 470, 60, 40);
 
 	}
 
@@ -215,31 +212,23 @@ public class GUIFormacao extends JPanel {
 			}
 		});
 		btApaga.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				FormacaoCandidatoController fcc = new FormacaoCandidatoController();
 				FormacaoController fc = new FormacaoController();
 				String aux = JOptionPane.showInputDialog("Digite o id que deseja apagar: ");
 				int id = Integer.parseInt(aux);
-				
+
 				if (id <= 0) {
 					JOptionPane.showMessageDialog(null, "O id fornecido é invalido! digite um Id valido!");
-					
+
 				} else {
 					JOptionPane.showMessageDialog(null, fc.deletarFormacao(id));
 					JOptionPane.showMessageDialog(null, fcc.deletarFormacaoCandidato(id));
 
 				}
-				
-			}
-		});
-		btPesquisa.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				//
-				
+
 			}
 		});
 

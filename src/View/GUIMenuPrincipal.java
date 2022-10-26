@@ -120,7 +120,7 @@ public class GUIMenuPrincipal extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				GUICandidato newCandidato = new GUICandidato();
 				contentPane.removeAll();
-				setBounds(0, 0, 800, 1000);
+				setBounds(0, 0, 800, 600);
 				contentPane.add(newCandidato);
 				contentPane.validate();
 

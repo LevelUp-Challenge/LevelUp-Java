@@ -10,6 +10,8 @@ public interface IDAO {
 	
 	public String excluir(Object obj);
 	
-	public ArrayList<String> listar(int id);
+	//public ArrayList<String> listar(int id);
+	
+	//public String currval(Object obj);
 
 }

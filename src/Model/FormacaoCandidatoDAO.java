@@ -27,12 +27,12 @@ public class FormacaoCandidatoDAO implements IDAO {
 	public String inserir(Object obj) {
 		fc = (FormacaoCandidato) obj;
 		String sql = "insert into T_LUP_FORMACAO_CANDIDATO (id_formacao_candidato, tp_formacao, ds_status_formacao)"
-				+ "values (?,?,?)";
+				+ "values (SQ_LUP_FORMACAO_CANDIDATO.NEXTVAL,?,?)";
 		try {
 			PreparedStatement ps = getCon().prepareStatement(sql);
-			ps.setInt(1, fc.getIdFormacao());
-			ps.setString(2, fc.getTpFormacao());
-			ps.setString(3, fc.getStatus());
+			//ps.setInt(1, fc.getIdFormacao());
+			ps.setString(1, fc.getTpFormacao());
+			ps.setString(2, fc.getStatus());
 			if (ps.executeUpdate() > 0) {
 				return "inserido com sucesso!";
 			} else {

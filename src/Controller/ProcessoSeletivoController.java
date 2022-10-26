@@ -12,8 +12,8 @@ import View.GUIProcessoSeletivo;
 
 public class ProcessoSeletivoController {
 	
-	public String cadastroProcesso(int id
-			, String nome, 
+	public String cadastroProcesso(
+			 String nome, 
 			String desc,
 			String area,
 			double salario,
@@ -27,7 +27,7 @@ public class ProcessoSeletivoController {
 		Connection con = Conexao.abrirConexao();
 		ProcessoSeletivo ps = new ProcessoSeletivo();
 		ProcessoSeletivoDAO psdao = new ProcessoSeletivoDAO(con);
-		ps.setId(id);
+		//ps.setId(id);
 		ps.setNomeVaga(nome);
 		ps.setDescricaoVaga(desc);
 		ps.setAreaVaga(area);

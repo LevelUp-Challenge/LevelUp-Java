@@ -186,7 +186,7 @@ public class GUIRecrutador extends JPanel {
 					
 				} else {
 					RecrutadorController r = new RecrutadorController();
-					JOptionPane.showMessageDialog(null, r.cadastrarRecrutador(1, nome, login, senha, areaRec));
+					JOptionPane.showMessageDialog(null, r.cadastrarRecrutador(nome, login, senha, areaRec));
 
 				}
 						

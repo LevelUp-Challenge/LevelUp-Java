@@ -1,83 +1,73 @@
 package Model;
 
 public class EnderecoCandidato {
-	private int idEnderecoCandidato;
-	private String dsBairro;
-	private String dsLogradouro;
-	private String dsCidade;
-	private int cep;
-	private String pontoRef;
+
+	private int id;
+	private String bairro;
+	private String logradouro;
 	private String estado;
-	private String sgEstado;
-	private int nrLogradouro;
+	private String cidade;
+	private int cep;
 	private String complemento;
-	
-	
-	public String getDsLogradouro() {
-		return dsLogradouro;
+
+	public EnderecoCandidato() {
+
 	}
-	public void setDsLogradouro(String dsLogradouro) {
-		this.dsLogradouro = dsLogradouro;
+
+	public int getId() {
+		return id;
 	}
-	
-	public int getIdEnderecoCandidato() {
-		return idEnderecoCandidato;
+
+	public void setId(int id) {
+		this.id = id;
 	}
-	public void setIdEnderecoCandidato(int idEnderecoCandidato) {
-		this.idEnderecoCandidato = idEnderecoCandidato;
+
+	public String getBairro() {
+		return bairro;
 	}
+
+	public void setBairro(String bairro) {
+		this.bairro = bairro;
+	}
+
+	public String getLogradouro() {
+		return logradouro;
+	}
+
+	public void setLogradouro(String logradouro) {
+		this.logradouro = logradouro;
+	}
+
 	public String getEstado() {
 		return estado;
 	}
+
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
-	public String getDsBairro() {
-		return dsBairro;
+
+	public String getCidade() {
+		return cidade;
 	}
-	public void setDsBairro(String dsBairro) {
-		this.dsBairro = dsBairro;
+
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
 	}
-	public String getDsCidade() {
-		return dsCidade;
-	}
-	public void setDsCidade(String dsCidade) {
-		this.dsCidade = dsCidade;
-	}
-	
-	
+
 	public int getCep() {
 		return cep;
 	}
+
 	public void setCep(int cep) {
 		this.cep = cep;
 	}
-	public String getPontoRef() {
-		return pontoRef;
-	}
-	public void setPontoRef(String pontoRef) {
-		this.pontoRef = pontoRef;
-	}
-	public String getSgEstado() {
-		return sgEstado;
-	}
-	public void setSgEstado(String sgEstado) {
-		this.sgEstado = sgEstado;
-	}
-	public int getNrLogradouro() {
-		return nrLogradouro;
-	}
-	public void setNrLogradouro(int nrLogradouro) {
-		this.nrLogradouro = nrLogradouro;
-	}
+
 	public String getComplemento() {
 		return complemento;
 	}
+
 	public void setComplemento(String complemento) {
 		this.complemento = complemento;
 	}
-	
-	
-	
 
 }

@@ -9,13 +9,12 @@ import Model.Conexao;
 
 public class CertificadosController {
 	
-	public String cadastrarCertificados(int id, String certificados, String cursos ) {
+	public String cadastrarCertificados(String certificados, String cursos ) {
 		String resultado;
 		
 		Certificados cer = new Certificados();
 		Connection con = Conexao.abrirConexao();
 		CertificadosDAO cerdao = new CertificadosDAO(con);
-		cer.setIdCertificados(id);
 		cer.setCurso(cursos);
 		cer.setDescricao(certificados);;
 		

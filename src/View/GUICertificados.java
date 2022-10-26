@@ -83,7 +83,7 @@ public class GUICertificados extends JPanel {
 					
 				} else {
 					CertificadosController gc = new CertificadosController();
-					JOptionPane.showMessageDialog(null, gc.cadastrarCertificados(1, certificado, cursos));
+					JOptionPane.showMessageDialog(null, gc.cadastrarCertificados(certificado, cursos));
 
 				}
 				
@@ -119,6 +119,14 @@ public class GUICertificados extends JPanel {
 				String aux = JOptionPane.showInputDialog("Digite o id que deseja apagar: ");
 				int id = Integer.parseInt(aux);
 				JOptionPane.showInputDialog(gc.deletarCertificados(id));
+				
+			}
+		});
+		btCancelar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
 				
 			}
 		});

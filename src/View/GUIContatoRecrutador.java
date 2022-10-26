@@ -100,7 +100,7 @@ public class GUIContatoRecrutador extends JPanel {
 				int ddiFormat = Integer.parseInt(ddi);
 				ContatoRecrutadorController crc = new ContatoRecrutadorController();
 				JOptionPane.showMessageDialog(null,
-						crc.cadastrarContatoRecrutador(1, email, telFormat, dddFormat, ddiFormat));
+						crc.cadastrarContatoRecrutador( email, telFormat, dddFormat, ddiFormat));
 
 			}
 		});
